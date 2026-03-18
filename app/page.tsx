@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 type Testimonial = {
@@ -50,6 +51,20 @@ const footerLinks: FooterLinks = {
   ],
 };
 
+function BrandLogo() {
+  return (
+    <div className="logo-box">
+      <Image
+        src="/edamah_logo_circle_exact.png"
+        alt="Edamah Clinic Logo"
+        width={32}
+        height={32}
+        className="logo-img"
+      />
+    </div>
+  );
+}
+
 function Navbar({ scrolled }: { scrolled: boolean }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -65,17 +80,7 @@ function Navbar({ scrolled }: { scrolled: boolean }) {
     <nav className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}>
       <div className="container nav-inner">
         <a href="#home" className="brand">
-          <div className="logo-box">
-            <img
-              src="/logo.png"
-              alt="Edamah Clinic Logo"
-              className="logo-img"
-              onError={(e) => {
-                e.currentTarget.style.display = "none";
-              }}
-            />
-            <span className="logo-fallback">E</span>
-          </div>
+          <BrandLogo />
           <div>
             <p className="brand-title">Edamah Clinic</p>
             <p className="brand-subtitle">Physical Therapy & Rehabilitation</p>
@@ -348,17 +353,7 @@ function Footer() {
       <div className="container footer-top">
         <div className="footer-brand">
           <div className="brand brand-footer">
-            <div className="logo-box">
-              <img
-                src="/logo.png"
-                alt="Edamah Clinic Logo"
-                className="logo-img"
-                onError={(e) => {
-                  e.currentTarget.style.display = "none";
-                }}
-              />
-              <span className="logo-fallback">E</span>
-            </div>
+            <BrandLogo />
             <div>
               <p className="brand-title">Edamah Clinic</p>
               <p className="brand-subtitle">
@@ -530,12 +525,6 @@ export default function Page() {
           width: 32px;
           height: 32px;
           object-fit: contain;
-        }
-
-        .logo-fallback {
-          position: absolute;
-          font-weight: 700;
-          color: var(--primary);
         }
 
         .brand-title {

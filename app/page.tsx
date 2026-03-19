@@ -55,13 +55,51 @@ function BrandLogo() {
   return (
     <div className="logo-box">
       <Image
-        src="/edamah_logo_circle_exact.png"
+        src="/edamah_logo_square_exact.png"
         alt="Edamah Clinic Logo"
         width={32}
         height={32}
         className="logo-img"
       />
     </div>
+  );
+}
+
+function LogoCarousel() {
+  const logos = [
+    "/edamah_logo_square_exact.png",
+    "/edamah_logo_square_exact.png",
+    "/edamah_logo_square_exact.png",
+    "/edamah_logo_square_exact.png",
+    "/edamah_logo_square_exact.png",
+    "/edamah_logo_square_exact.png",
+  ];
+
+  const repeatedLogos = [...logos, ...logos];
+
+  return (
+    <section className="logo-carousel-section">
+      <div className="container centered">
+        <h2 className="logo-strip-title">Trusted Care You Can Rely On</h2>
+        <p className="logo-strip-text">
+          Supporting recovery, mobility, and long-term wellness for our patients
+        </p>
+
+        <div className="logo-carousel-wrap">
+          <div className="logo-carousel-track">
+            {repeatedLogos.map((logo, index) => (
+              <div key={index} className="logo-carousel-item">
+                <img
+                  src={logo}
+                  alt="Edamah Clinic Logo"
+                  className="logo-carousel-img"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -944,6 +982,79 @@ export default function Page() {
           color: var(--text-muted);
         }
 
+        .logo-carousel-section {
+          padding: 72px 0;
+          background: #fcfcfd;
+        }
+
+        .logo-strip-title {
+          margin: 0 0 10px;
+          font-size: clamp(1.8rem, 3vw, 2.5rem);
+          color: #354d5c;
+        }
+
+        .logo-strip-text {
+          margin: 0 0 28px;
+          color: #78a2ab;
+          font-size: 1rem;
+        }
+
+        .logo-carousel-wrap {
+          overflow: hidden;
+          position: relative;
+          width: 100%;
+          mask-image: linear-gradient(
+            to right,
+            transparent,
+            black 10%,
+            black 90%,
+            transparent
+          );
+          -webkit-mask-image: linear-gradient(
+            to right,
+            transparent,
+            black 10%,
+            black 90%,
+            transparent
+          );
+        }
+
+        .logo-carousel-track {
+          display: flex;
+          align-items: center;
+          gap: 18px;
+          width: max-content;
+          animation: logo-scroll 18s linear infinite;
+        }
+
+        .logo-carousel-item {
+          width: 92px;
+          height: 92px;
+          border-radius: 999px;
+          background: white;
+          border: 1px solid rgba(120, 162, 171, 0.22);
+          box-shadow: 0 10px 24px rgba(47, 75, 83, 0.05);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+        }
+
+        .logo-carousel-img {
+          width: 56px;
+          height: 56px;
+          object-fit: contain;
+        }
+
+        @keyframes logo-scroll {
+          from {
+            transform: translateX(0);
+          }
+          to {
+            transform: translateX(calc(-50% - 9px));
+          }
+        }
+
         .testimonials-section {
           padding: 88px 0;
           background: var(--bg);
@@ -1164,7 +1275,8 @@ export default function Page() {
 
           .hero-text,
           .simple-section p,
-          .testimonials-left p {
+          .testimonials-left p,
+          .logo-strip-text {
             font-size: 1rem;
           }
 
@@ -1175,7 +1287,8 @@ export default function Page() {
           }
 
           .simple-section,
-          .testimonials-section {
+          .testimonials-section,
+          .logo-carousel-section {
             padding: 72px 0;
           }
 
@@ -1196,11 +1309,22 @@ export default function Page() {
             flex-direction: column;
             align-items: flex-start;
           }
+
+          .logo-carousel-item {
+            width: 78px;
+            height: 78px;
+          }
+
+          .logo-carousel-img {
+            width: 48px;
+            height: 48px;
+          }
         }
       `}</style>
 
       <Navbar scrolled={scrolled} />
       <Hero />
+      <LogoCarousel />
 
       <SimpleSection
         id="about"

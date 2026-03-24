@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 
+type Language = "en" | "ar";
+
 type Testimonial = {
   name: string;
   role: {
@@ -22,8 +24,6 @@ type FooterLinks = Record<
     ar: string[];
   }
 >;
-
-type Language = "en" | "ar";
 
 const content = {
   en: {
@@ -110,6 +110,43 @@ const content = {
       badge: "Patient Experiences",
       title: "What our patients are saying about their recovery",
       text: "Real experiences from patients who trusted our clinic for pain relief, rehabilitation, and improved mobility through personalized physiotherapy care.",
+    },
+    faq: {
+      badge: "Questions & Answers",
+      title: "Frequently asked questions",
+      text: "Find quick answers about appointments, treatment plans, insurance, and what to expect during your visit.",
+      items: [
+        {
+          question: "Do I need an appointment before visiting the clinic?",
+          answer:
+            "Yes, we recommend booking an appointment in advance so our team can prepare for your visit and reduce waiting time.",
+        },
+        {
+          question: "Do you offer personalized treatment plans?",
+          answer:
+            "Yes. Every patient receives an individualized treatment plan based on their condition, goals, and recovery progress.",
+        },
+        {
+          question: "Can I come for treatment after surgery or injury?",
+          answer:
+            "Absolutely. We support post-surgery rehabilitation, sports injuries, chronic pain cases, and mobility recovery programs.",
+        },
+        {
+          question: "How long does each session usually take?",
+          answer:
+            "Session length can vary depending on the treatment plan, but most appointments typically last between 30 and 60 minutes.",
+        },
+        {
+          question: "Do you accept insurance?",
+          answer:
+            "Insurance availability depends on the provider and plan. Please contact the clinic directly to confirm your coverage.",
+        },
+        {
+          question: "What should I bring to my first appointment?",
+          answer:
+            "Please bring any medical reports, scans, previous treatment notes, and a list of current symptoms or medications if available.",
+        },
+      ],
     },
     contact: {
       title: "Contact Us",
@@ -211,6 +248,43 @@ const content = {
       title: "ماذا يقول مرضانا عن رحلتهم العلاجية",
       text: "تجارب حقيقية من مرضى وثقوا بعيادتنا لتخفيف الألم وإعادة التأهيل وتحسين الحركة من خلال رعاية علاج طبيعي مخصصة.",
     },
+    faq: {
+      badge: "الأسئلة والأجوبة",
+      title: "الأسئلة الشائعة",
+      text: "اعثر على إجابات سريعة حول المواعيد، والخطط العلاجية، والتأمين، وما يمكن توقعه أثناء زيارتك.",
+      items: [
+        {
+          question: "هل أحتاج إلى موعد قبل زيارة العيادة؟",
+          answer:
+            "نعم، نوصي بحجز موعد مسبقًا حتى يتمكن فريقنا من الاستعداد لزيارتك وتقليل وقت الانتظار.",
+        },
+        {
+          question: "هل تقدمون خطط علاج مخصصة؟",
+          answer:
+            "نعم. يحصل كل مريض على خطة علاج فردية بناءً على حالته وأهدافه وتقدم تعافيه.",
+        },
+        {
+          question: "هل يمكنني الحضور للعلاج بعد الجراحة أو الإصابة؟",
+          answer:
+            "بالتأكيد. نحن ندعم إعادة التأهيل بعد العمليات الجراحية، والإصابات الرياضية، وحالات الألم المزمن، وبرامج استعادة الحركة.",
+        },
+        {
+          question: "كم تستغرق الجلسة عادة؟",
+          answer:
+            "تختلف مدة الجلسة حسب الخطة العلاجية، لكن معظم المواعيد تستغرق عادة من 30 إلى 60 دقيقة.",
+        },
+        {
+          question: "هل تقبلون التأمين؟",
+          answer:
+            "يعتمد قبول التأمين على مزود الخدمة والخطة. يرجى التواصل مع العيادة مباشرة لتأكيد التغطية.",
+        },
+        {
+          question: "ماذا أحضر في أول موعد؟",
+          answer:
+            "يرجى إحضار أي تقارير طبية أو صور أشعة أو ملاحظات علاج سابقة، بالإضافة إلى قائمة بالأعراض الحالية أو الأدوية إن وجدت.",
+        },
+      ],
+    },
     contact: {
       title: "تواصل معنا",
       text: "احجز موعدًا، أو استفسر عن خيارات العلاج، أو تواصل معنا لمعرفة كيف يمكن لعيادتنا دعم رحلتك العلاجية.",
@@ -293,7 +367,7 @@ function BrandLogo() {
   return (
     <div className="logo-box">
       <img
-        src="/edamah_logo_square_exact.png"
+        src="/edamah_logo_circle_exact.png"
         alt="Edamah Clinic Logo"
         className="logo-img"
       />
@@ -341,12 +415,10 @@ function LogoCarousel({ t }: { t: (typeof content)["en"] }) {
 function Navbar({
   scrolled,
   t,
-  language,
   onToggleLanguage,
 }: {
   scrolled: boolean;
   t: (typeof content)["en"];
-  language: Language;
   onToggleLanguage: () => void;
 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -390,6 +462,7 @@ function Navbar({
           <a href="tel:+966000000000" className="ghost-btn">
             {t.buttons.callUs}
           </a>
+
           <a href="#contact" className="primary-btn small-btn">
             {t.buttons.bookNow}
           </a>
@@ -619,6 +692,50 @@ function Testimonials({
   );
 }
 
+function FAQSection({ t }: { t: (typeof content)["en"] }) {
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+  return (
+    <section className="faq-section">
+      <div className="container faq-grid">
+        <div className="faq-left">
+          <div className="pill secondary-pill">{t.faq.badge}</div>
+          <h2>{t.faq.title}</h2>
+          <p>{t.faq.text}</p>
+        </div>
+
+        <div className="faq-right">
+          {t.faq.items.map((item, index) => {
+            const isOpen = openIndex === index;
+
+            return (
+              <div
+                key={item.question}
+                className={`faq-card ${isOpen ? "faq-card-open" : ""}`}
+              >
+                <button
+                  type="button"
+                  className="faq-question"
+                  onClick={() => setOpenIndex(isOpen ? null : index)}
+                >
+                  <span>{item.question}</span>
+                  <span className="faq-icon">{isOpen ? "−" : "+"}</span>
+                </button>
+
+                {isOpen && (
+                  <div className="faq-answer">
+                    <p>{item.answer}</p>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Footer({
   t,
   language,
@@ -688,7 +805,11 @@ function Footer({
         <div className="footer-bottom-links">
           <a href="#">{footerLinks.legal[language][0]}</a>
           <a href="#">{language === "en" ? "Terms of Service" : "شروط الخدمة"}</a>
-          <a href="#">{language === "en" ? "Cookie Settings" : "إعدادات ملفات تعريف الارتباط"}</a>
+          <a href="#">
+            {language === "en"
+              ? "Cookie Settings"
+              : "إعدادات ملفات تعريف الارتباط"}
+          </a>
         </div>
       </div>
     </footer>
@@ -1418,6 +1539,94 @@ export default function Page() {
           font-size: 0.84rem;
         }
 
+        .faq-section {
+          padding: 88px 0;
+          background: white;
+        }
+
+        .faq-grid {
+          display: grid;
+          grid-template-columns: 0.9fr 1.1fr;
+          gap: 56px;
+          align-items: start;
+        }
+
+        .faq-left h2 {
+          margin: 0 0 18px;
+          font-size: clamp(2rem, 4vw, 3.4rem);
+          line-height: 1.08;
+        }
+
+        .faq-left p {
+          margin: 0;
+          font-size: 1.05rem;
+          line-height: 1.8;
+          color: var(--text-muted);
+        }
+
+        .faq-right {
+          display: grid;
+          gap: 16px;
+        }
+
+        .faq-card {
+          background: rgba(255, 255, 255, 0.88);
+          border: 1px solid rgba(111, 150, 160, 0.14);
+          border-radius: 22px;
+          box-shadow: 0 10px 24px rgba(47, 75, 83, 0.05);
+          overflow: hidden;
+          transition: 0.25s ease;
+        }
+
+        .faq-card:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 18px 34px rgba(47, 75, 83, 0.08);
+        }
+
+        .faq-card-open {
+          border-color: rgba(111, 150, 160, 0.24);
+          box-shadow: 0 18px 34px rgba(47, 75, 83, 0.08);
+        }
+
+        .faq-question {
+          width: 100%;
+          border: 0;
+          background: transparent;
+          padding: 22px 24px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 16px;
+          text-align: inherit;
+          font-size: 1rem;
+          font-weight: 600;
+          color: var(--primary);
+          cursor: pointer;
+        }
+
+        .faq-icon {
+          width: 34px;
+          height: 34px;
+          border-radius: 999px;
+          background: rgba(111, 150, 160, 0.1);
+          display: grid;
+          place-items: center;
+          flex-shrink: 0;
+          font-size: 1.2rem;
+          line-height: 1;
+        }
+
+        .faq-answer {
+          padding: 0 24px 22px;
+        }
+
+        .faq-answer p {
+          margin: 0;
+          color: var(--text-muted);
+          line-height: 1.8;
+          font-size: 0.96rem;
+        }
+
         .footer {
           background: linear-gradient(to bottom, white 0%, #f4f8f8 100%);
           border-top: 1px solid rgba(111, 150, 160, 0.1);
@@ -1515,6 +1724,7 @@ export default function Page() {
 
         [dir="rtl"] .hero-grid,
         [dir="rtl"] .testimonials-grid,
+        [dir="rtl"] .faq-grid,
         [dir="rtl"] .footer-top {
           direction: rtl;
         }
@@ -1541,6 +1751,7 @@ export default function Page() {
 
           .hero-grid,
           .testimonials-grid,
+          .faq-grid,
           .footer-top {
             grid-template-columns: 1fr;
           }
@@ -1581,7 +1792,8 @@ export default function Page() {
           .hero-text,
           .simple-section p,
           .testimonials-left p,
-          .logo-strip-text {
+          .logo-strip-text,
+          .faq-left p {
             font-size: 1rem;
           }
 
@@ -1593,7 +1805,8 @@ export default function Page() {
 
           .simple-section,
           .testimonials-section,
-          .logo-carousel-section {
+          .logo-carousel-section,
+          .faq-section {
             padding: 72px 0;
           }
 
@@ -1625,13 +1838,21 @@ export default function Page() {
             max-width: 90px;
             max-height: 56px;
           }
+
+          .faq-question {
+            padding: 18px 18px;
+            font-size: 0.95rem;
+          }
+
+          .faq-answer {
+            padding: 0 18px 18px;
+          }
         }
       `}</style>
 
       <Navbar
         scrolled={scrolled}
         t={t}
-        language={language}
         onToggleLanguage={() =>
           setLanguage((prev) => (prev === "en" ? "ar" : "en"))
         }
@@ -1640,11 +1861,7 @@ export default function Page() {
       <Hero t={t} />
       <LogoCarousel t={t} />
 
-      <SimpleSection
-        id="about"
-        title={t.about.title}
-        text={t.about.text}
-      />
+      <SimpleSection id="about" title={t.about.title} text={t.about.text} />
 
       <SimpleSection
         id="services"
@@ -1653,6 +1870,8 @@ export default function Page() {
       />
 
       <Testimonials t={t} language={language} />
+
+      <FAQSection t={t} />
 
       <SimpleSection
         id="contact"

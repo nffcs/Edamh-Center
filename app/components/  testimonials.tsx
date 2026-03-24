@@ -1,4 +1,4 @@
-type testimonial = {
+type Testimonial = {
   name: string;
   role: string;
   image: string;

@@ -1,12 +1,11 @@
 "use client";
-
-import Navbar from "../components/Navbar";
-import Hero from "../components/Hero";
-import LogoCarousel from "../components/LogoCarousel";
-import SimpleSection from "../components/SimpleSection";
-import Testimonials from "../components/Testimonials";
-import Footer from "../components/Footer";
-
+import { useEffect, useState } from "react";
+import Navbar from "./components/navbar";
+import Hero from "./components/hero";
+import LogoCarousel from "./components/logo-carousel";
+import SimpleSection from "./components/simple-section";
+import Testimonials from "./components/testimonials";
+import Footer from "./components/footer";
 export default function Page() {
   const [scrolled, setScrolled] = useState(false);
 

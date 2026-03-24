@@ -4,50 +4,289 @@ import { useEffect, useState } from "react";
 
 type Testimonial = {
   name: string;
-  role: string;
+  role: {
+    en: string;
+    ar: string;
+  };
   image: string;
-  content: string;
+  content: {
+    en: string;
+    ar: string;
+  };
 };
 
-type FooterLinks = Record<string, string[]>;
+type FooterLinks = Record<
+  string,
+  {
+    en: string[];
+    ar: string[];
+  }
+>;
+
+type Language = "en" | "ar";
+
+const content = {
+  en: {
+    clinicName: "Edamah Clinic",
+    clinicSubtitle: "Physical Therapy & Rehabilitation",
+    nav: {
+      home: "Home",
+      about: "About",
+      services: "Services",
+      testimonials: "Testimonials",
+      contact: "Contact",
+    },
+    buttons: {
+      callUs: "Call Us",
+      bookNow: "Book Now",
+      bookAppointment: "Book Appointment",
+      learnMore: "Learn More",
+      switchLanguage: "العربية",
+    },
+    hero: {
+      badge: "Trusted Physical Therapy & Rehabilitation Care",
+      title1: "Move Better.",
+      title2: "Recover Stronger.",
+      title3: "Live With Confidence.",
+      text: "We provide personalized physiotherapy and rehabilitation programs designed to reduce pain, restore movement, and support long-term recovery with compassionate, evidence-based care.",
+      cards: {
+        pain: {
+          title: "Pain Relief",
+          text: "Targeted treatment plans for faster recovery and better comfort.",
+        },
+        mobility: {
+          title: "Improved Mobility",
+          text: "Restore movement and flexibility with guided rehabilitation.",
+        },
+        care: {
+          title: "Trusted Care",
+          text: "Professional support in a calm and patient-centered environment.",
+        },
+      },
+      panelTitle: "Personalized Recovery Plan",
+      panelSubtitle: "Patient-focused physiotherapy journey",
+      assessmentLabel: "Assessment",
+      assessmentTitle: "Start with the right diagnosis",
+      assessmentText:
+        "Our team evaluates pain points, mobility limitations, and recovery goals to build a treatment plan tailored specifically to each patient.",
+      steps: [
+        {
+          step: "Step 01",
+          title: "Consultation",
+          desc: "Review symptoms and physical condition.",
+        },
+        {
+          step: "Step 02",
+          title: "Treatment Plan",
+          desc: "A customized path toward pain relief and mobility.",
+        },
+        {
+          step: "Step 03",
+          title: "Guided Therapy",
+          desc: "Hands-on care with evidence-based techniques.",
+        },
+        {
+          step: "Step 04",
+          title: "Recovery Support",
+          desc: "Progress monitoring for lasting results.",
+        },
+      ],
+      badgeTitle: "Modern Rehabilitation",
+      badgeText: "Care that supports movement",
+    },
+    logoCarousel: {
+      title: "Trusted Partners & Organizations",
+      text: "Collaborating with leading healthcare and wellness organizations",
+    },
+    about: {
+      title: "About Edamah Clinic",
+      text: "We provide patient-centered physiotherapy and rehabilitation care with a focus on restoring mobility, easing pain, and improving quality of life through modern clinical methods.",
+    },
+    services: {
+      title: "Our Services",
+      text: "From injury rehabilitation and post-surgery recovery to chronic pain management and personalized treatment plans, our services are designed to support every stage of recovery.",
+    },
+    testimonials: {
+      badge: "Patient Experiences",
+      title: "What our patients are saying about their recovery",
+      text: "Real experiences from patients who trusted our clinic for pain relief, rehabilitation, and improved mobility through personalized physiotherapy care.",
+    },
+    contact: {
+      title: "Contact Us",
+      text: "Book an appointment, ask about treatment options, or reach out to learn more about how our clinic can support your recovery journey.",
+    },
+    footer: {
+      copy: "Personalized physiotherapy and rehabilitation care focused on pain relief, mobility, recovery, and long-term wellness in a trusted clinical environment.",
+      rights: "© 2026 Edamah Clinic. All rights reserved.",
+      categories: {
+        clinic: "Clinic",
+        patients: "Patients",
+        resources: "Resources",
+        legal: "Legal",
+      },
+    },
+  },
+  ar: {
+    clinicName: "عيادة إدامة",
+    clinicSubtitle: "العلاج الطبيعي وإعادة التأهيل",
+    nav: {
+      home: "الرئيسية",
+      about: "من نحن",
+      services: "الخدمات",
+      testimonials: "آراء المرضى",
+      contact: "تواصل معنا",
+    },
+    buttons: {
+      callUs: "اتصل بنا",
+      bookNow: "احجز الآن",
+      bookAppointment: "احجز موعدًا",
+      learnMore: "اعرف المزيد",
+      switchLanguage: "English",
+    },
+    hero: {
+      badge: "رعاية موثوقة في العلاج الطبيعي وإعادة التأهيل",
+      title1: "تحرك بشكل أفضل.",
+      title2: "تعافَ بشكل أقوى.",
+      title3: "عِش بثقة.",
+      text: "نقدم برامج علاج طبيعي وإعادة تأهيل مخصصة تهدف إلى تقليل الألم، واستعادة الحركة، ودعم التعافي طويل الأمد من خلال رعاية رحيمة قائمة على أسس علمية.",
+      cards: {
+        pain: {
+          title: "تخفيف الألم",
+          text: "خطط علاجية موجهة لتعافٍ أسرع وراحة أفضل.",
+        },
+        mobility: {
+          title: "تحسين الحركة",
+          text: "استعد الحركة والمرونة من خلال إعادة تأهيل موجهة.",
+        },
+        care: {
+          title: "رعاية موثوقة",
+          text: "دعم مهني في بيئة هادئة تركز على المريض.",
+        },
+      },
+      panelTitle: "خطة تعافٍ مخصصة",
+      panelSubtitle: "رحلة علاج طبيعي تركز على المريض",
+      assessmentLabel: "التقييم",
+      assessmentTitle: "ابدأ بالتشخيص الصحيح",
+      assessmentText:
+        "يقوم فريقنا بتقييم مواضع الألم، ومحدودية الحركة، وأهداف التعافي لبناء خطة علاجية مصممة خصيصًا لكل مريض.",
+      steps: [
+        {
+          step: "الخطوة 01",
+          title: "الاستشارة",
+          desc: "مراجعة الأعراض والحالة الجسدية.",
+        },
+        {
+          step: "الخطوة 02",
+          title: "الخطة العلاجية",
+          desc: "مسار مخصص نحو تخفيف الألم وتحسين الحركة.",
+        },
+        {
+          step: "الخطوة 03",
+          title: "العلاج الموجّه",
+          desc: "رعاية مباشرة باستخدام تقنيات قائمة على الأدلة.",
+        },
+        {
+          step: "الخطوة 04",
+          title: "دعم التعافي",
+          desc: "متابعة التقدم لتحقيق نتائج مستدامة.",
+        },
+      ],
+      badgeTitle: "إعادة تأهيل حديثة",
+      badgeText: "رعاية تدعم الحركة",
+    },
+    logoCarousel: {
+      title: "شركاؤنا والجهات المتعاونة معنا",
+      text: "نتعاون مع جهات رائدة في الرعاية الصحية والعافية",
+    },
+    about: {
+      title: "عن عيادة إدامة",
+      text: "نقدم رعاية علاج طبيعي وإعادة تأهيل تركز على المريض بهدف استعادة الحركة وتخفيف الألم وتحسين جودة الحياة من خلال أساليب علاجية حديثة.",
+    },
+    services: {
+      title: "خدماتنا",
+      text: "من إعادة تأهيل الإصابات والتعافي بعد العمليات الجراحية إلى علاج الألم المزمن والخطط العلاجية المخصصة، صُممت خدماتنا لدعم كل مرحلة من مراحل التعافي.",
+    },
+    testimonials: {
+      badge: "تجارب المرضى",
+      title: "ماذا يقول مرضانا عن رحلتهم العلاجية",
+      text: "تجارب حقيقية من مرضى وثقوا بعيادتنا لتخفيف الألم وإعادة التأهيل وتحسين الحركة من خلال رعاية علاج طبيعي مخصصة.",
+    },
+    contact: {
+      title: "تواصل معنا",
+      text: "احجز موعدًا، أو استفسر عن خيارات العلاج، أو تواصل معنا لمعرفة كيف يمكن لعيادتنا دعم رحلتك العلاجية.",
+    },
+    footer: {
+      copy: "رعاية علاج طبيعي وإعادة تأهيل مخصصة تركز على تخفيف الألم وتحسين الحركة ودعم التعافي والعافية طويلة المدى في بيئة علاجية موثوقة.",
+      rights: "© 2026 عيادة إدامة. جميع الحقوق محفوظة.",
+      categories: {
+        clinic: "العيادة",
+        patients: "المرضى",
+        resources: "الموارد",
+        legal: "القانونية",
+      },
+    },
+  },
+};
 
 const testimonials: Testimonial[] = [
   {
     name: "Aisha Alharbi",
-    role: "Lower Back Pain Recovery",
+    role: {
+      en: "Lower Back Pain Recovery",
+      ar: "التعافي من آلام أسفل الظهر",
+    },
     image:
       "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=200",
-    content:
-      "The care I received was thoughtful, professional, and incredibly effective. After a few sessions, my pain reduced significantly and my movement felt much more natural.",
+    content: {
+      en: "The care I received was thoughtful, professional, and incredibly effective. After a few sessions, my pain reduced significantly and my movement felt much more natural.",
+      ar: "كانت الرعاية التي تلقيتها مدروسة واحترافية وفعالة جدًا. بعد عدة جلسات، انخفض الألم بشكل ملحوظ وأصبحت حركتي أكثر طبيعية.",
+    },
   },
   {
     name: "Omar Hassan",
-    role: "Post-Surgery Rehabilitation",
+    role: {
+      en: "Post-Surgery Rehabilitation",
+      ar: "إعادة التأهيل بعد الجراحة",
+    },
     image:
       "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=200",
-    content:
-      "The treatment plan was clear, supportive, and tailored to my condition. The team helped me rebuild strength and confidence step by step throughout recovery.",
+    content: {
+      en: "The treatment plan was clear, supportive, and tailored to my condition. The team helped me rebuild strength and confidence step by step throughout recovery.",
+      ar: "كانت الخطة العلاجية واضحة وداعمة ومناسبة لحالتي. ساعدني الفريق على استعادة القوة والثقة خطوة بخطوة طوال فترة التعافي.",
+    },
   },
   {
     name: "Lina Mohammed",
-    role: "Sports Injury Treatment",
+    role: {
+      en: "Sports Injury Treatment",
+      ar: "علاج الإصابات الرياضية",
+    },
     image:
       "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=200",
-    content:
-      "What stood out most was how personalized everything felt. The therapists listened carefully, explained every stage, and helped me return to daily activity with much less discomfort.",
+    content: {
+      en: "What stood out most was how personalized everything felt. The therapists listened carefully, explained every stage, and helped me return to daily activity with much less discomfort.",
+      ar: "أكثر ما لفت انتباهي هو مدى تخصيص الرعاية لكل حالتي. استمع المعالجون بعناية وشرحوا كل مرحلة وساعدوني على العودة للنشاط اليومي براحة أكبر.",
+    },
   },
 ];
 
 const footerLinks: FooterLinks = {
-  Clinic: ["About Us", "Our Team", "Services", "Treatments"],
-  Patients: ["Book Appointment", "Insurance", "FAQ", "Patient Guide"],
-  Resources: ["Health Blog", "Recovery Tips", "Contact", "Support"],
-  Legal: [
-    "Privacy Policy",
-    "Terms & Conditions",
-    "Cookie Policy",
-    "Compliance",
-  ],
+  clinic: {
+    en: ["About Us", "Our Team", "Services", "Treatments"],
+    ar: ["من نحن", "فريقنا", "الخدمات", "العلاجات"],
+  },
+  patients: {
+    en: ["Book Appointment", "Insurance", "FAQ", "Patient Guide"],
+    ar: ["حجز موعد", "التأمين", "الأسئلة الشائعة", "دليل المريض"],
+  },
+  resources: {
+    en: ["Health Blog", "Recovery Tips", "Contact", "Support"],
+    ar: ["المدونة الصحية", "نصائح التعافي", "تواصل معنا", "الدعم"],
+  },
+  legal: {
+    en: ["Privacy Policy", "Terms & Conditions", "Cookie Policy", "Compliance"],
+    ar: ["سياسة الخصوصية", "الشروط والأحكام", "سياسة ملفات تعريف الارتباط", "الامتثال"],
+  },
 };
 
 function BrandLogo() {
@@ -62,8 +301,7 @@ function BrandLogo() {
   );
 }
 
-
-function LogoCarousel() {
+function LogoCarousel({ t }: { t: (typeof content)["en"] }) {
   const logos = [
     { src: "/logos/qassim.png", alt: "Qassim Health Cluster" },
     { src: "/logos/rheumatism.png", alt: "Rheumatism Association" },
@@ -79,10 +317,8 @@ function LogoCarousel() {
   return (
     <section className="logo-carousel-section">
       <div className="container centered">
-        <h2 className="logo-strip-title">Trusted Partners & Organizations</h2>
-        <p className="logo-strip-text">
-          Collaborating with leading healthcare and wellness organizations
-        </p>
+        <h2 className="logo-strip-title">{t.logoCarousel.title}</h2>
+        <p className="logo-strip-text">{t.logoCarousel.text}</p>
 
         <div className="logo-carousel-wrap">
           <div className="logo-carousel-track">
@@ -102,15 +338,25 @@ function LogoCarousel() {
   );
 }
 
-function Navbar({ scrolled }: { scrolled: boolean }) {
+function Navbar({
+  scrolled,
+  t,
+  language,
+  onToggleLanguage,
+}: {
+  scrolled: boolean;
+  t: (typeof content)["en"];
+  language: Language;
+  onToggleLanguage: () => void;
+}) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { label: "Home", href: "#home" },
-    { label: "About", href: "#about" },
-    { label: "Services", href: "#services" },
-    { label: "Testimonials", href: "#testimonials" },
-    { label: "Contact", href: "#contact" },
+    { label: t.nav.home, href: "#home" },
+    { label: t.nav.about, href: "#about" },
+    { label: t.nav.services, href: "#services" },
+    { label: t.nav.testimonials, href: "#testimonials" },
+    { label: t.nav.contact, href: "#contact" },
   ];
 
   return (
@@ -119,8 +365,8 @@ function Navbar({ scrolled }: { scrolled: boolean }) {
         <a href="#home" className="brand">
           <BrandLogo />
           <div>
-            <p className="brand-title">Edamah Clinic</p>
-            <p className="brand-subtitle">Physical Therapy & Rehabilitation</p>
+            <p className="brand-title">{t.clinicName}</p>
+            <p className="brand-subtitle">{t.clinicSubtitle}</p>
           </div>
         </a>
 
@@ -133,17 +379,26 @@ function Navbar({ scrolled }: { scrolled: boolean }) {
         </div>
 
         <div className="desktop-actions">
+          <button
+            type="button"
+            className="ghost-btn small-btn language-btn"
+            onClick={onToggleLanguage}
+          >
+            {t.buttons.switchLanguage}
+          </button>
+
           <a href="tel:+966000000000" className="ghost-btn">
-            Call Us
+            {t.buttons.callUs}
           </a>
           <a href="#contact" className="primary-btn small-btn">
-            Book Now
+            {t.buttons.bookNow}
           </a>
         </div>
 
         <button
           className="mobile-menu-btn"
           onClick={() => setMobileMenuOpen((prev) => !prev)}
+          type="button"
         >
           {mobileMenuOpen ? "✕" : "☰"}
         </button>
@@ -162,19 +417,32 @@ function Navbar({ scrolled }: { scrolled: boolean }) {
                 {item.label}
               </a>
             ))}
+
+            <button
+              type="button"
+              className="ghost-btn full-btn"
+              onClick={() => {
+                onToggleLanguage();
+                setMobileMenuOpen(false);
+              }}
+            >
+              {t.buttons.switchLanguage}
+            </button>
+
             <a
               href="tel:+966000000000"
               className="ghost-btn full-btn"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Call Us
+              {t.buttons.callUs}
             </a>
+
             <a
               href="#contact"
               className="primary-btn full-btn"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Book Appointment
+              {t.buttons.bookAppointment}
             </a>
           </div>
         </div>
@@ -183,7 +451,7 @@ function Navbar({ scrolled }: { scrolled: boolean }) {
   );
 }
 
-function Hero() {
+function Hero({ t }: { t: (typeof content)["en"] }) {
   const [mousePosition, setMousePosition] = useState({ x: 300, y: 200 });
 
   useEffect(() => {
@@ -211,51 +479,41 @@ function Hero() {
         <div className="hero-left">
           <div className="pill">
             <span className="pill-dot" />
-            Trusted Physical Therapy & Rehabilitation Care
+            {t.hero.badge}
           </div>
 
           <h1 className="hero-title">
-            <span>Move Better.</span>
-            <span className="gradient-text">Recover Stronger.</span>
-            <span>Live With Confidence.</span>
+            <span>{t.hero.title1}</span>
+            <span className="gradient-text">{t.hero.title2}</span>
+            <span>{t.hero.title3}</span>
           </h1>
 
-          <p className="hero-text">
-            We provide personalized physiotherapy and rehabilitation programs
-            designed to reduce pain, restore movement, and support long-term
-            recovery with compassionate, evidence-based care.
-          </p>
+          <p className="hero-text">{t.hero.text}</p>
 
           <div className="hero-actions">
             <a href="#contact" className="primary-btn">
-              Book Appointment
+              {t.buttons.bookAppointment}
             </a>
             <a href="#about" className="ghost-btn">
-              Learn More
+              {t.buttons.learnMore}
             </a>
           </div>
 
           <div className="feature-cards">
             <div className="mini-card">
               <div className="mini-bar" />
-              <h3>Pain Relief</h3>
-              <p>
-                Targeted treatment plans for faster recovery and better comfort.
-              </p>
+              <h3>{t.hero.cards.pain.title}</h3>
+              <p>{t.hero.cards.pain.text}</p>
             </div>
             <div className="mini-card">
               <div className="mini-bar" />
-              <h3>Improved Mobility</h3>
-              <p>
-                Restore movement and flexibility with guided rehabilitation.
-              </p>
+              <h3>{t.hero.cards.mobility.title}</h3>
+              <p>{t.hero.cards.mobility.text}</p>
             </div>
             <div className="mini-card">
               <div className="mini-bar" />
-              <h3>Trusted Care</h3>
-              <p>
-                Professional support in a calm and patient-centered environment.
-              </p>
+              <h3>{t.hero.cards.care.title}</h3>
+              <p>{t.hero.cards.care.text}</p>
             </div>
           </div>
         </div>
@@ -264,52 +522,25 @@ function Hero() {
           <div className="hero-panel">
             <div className="panel-top">
               <div>
-                <p className="panel-title">Personalized Recovery Plan</p>
-                <p className="panel-subtitle">
-                  Patient-focused physiotherapy journey
-                </p>
+                <p className="panel-title">{t.hero.panelTitle}</p>
+                <p className="panel-subtitle">{t.hero.panelSubtitle}</p>
               </div>
               <div className="panel-icon">❤</div>
             </div>
 
             <div className="panel-content">
               <div className="assessment-card">
-                <p className="assessment-label">Assessment</p>
-                <h3>Start with the right diagnosis</h3>
-                <p>
-                  Our team evaluates pain points, mobility limitations, and
-                  recovery goals to build a treatment plan tailored specifically
-                  to each patient.
-                </p>
+                <p className="assessment-label">{t.hero.assessmentLabel}</p>
+                <h3>{t.hero.assessmentTitle}</h3>
+                <p>{t.hero.assessmentText}</p>
               </div>
 
               <div className="steps-grid">
-                {[
-                  [
-                    "Step 01",
-                    "Consultation",
-                    "Review symptoms and physical condition.",
-                  ],
-                  [
-                    "Step 02",
-                    "Treatment Plan",
-                    "A customized path toward pain relief and mobility.",
-                  ],
-                  [
-                    "Step 03",
-                    "Guided Therapy",
-                    "Hands-on care with evidence-based techniques.",
-                  ],
-                  [
-                    "Step 04",
-                    "Recovery Support",
-                    "Progress monitoring for lasting results.",
-                  ],
-                ].map(([step, title, desc]) => (
-                  <div className="step-card" key={step}>
-                    <p className="step-label">{step}</p>
-                    <h4>{title}</h4>
-                    <p>{desc}</p>
+                {t.hero.steps.map((item) => (
+                  <div className="step-card" key={item.step}>
+                    <p className="step-label">{item.step}</p>
+                    <h4>{item.title}</h4>
+                    <p>{item.desc}</p>
                   </div>
                 ))}
               </div>
@@ -318,8 +549,8 @@ function Hero() {
             <div className="floating-badge">
               <div className="floating-icon">✦</div>
               <div>
-                <p>Modern Rehabilitation</p>
-                <span>Care that supports movement</span>
+                <p>{t.hero.badgeTitle}</p>
+                <span>{t.hero.badgeText}</span>
               </div>
             </div>
           </div>
@@ -348,18 +579,20 @@ function SimpleSection({
   );
 }
 
-function Testimonials() {
+function Testimonials({
+  t,
+  language,
+}: {
+  t: (typeof content)["en"];
+  language: Language;
+}) {
   return (
     <section id="testimonials" className="testimonials-section">
       <div className="container testimonials-grid">
         <div className="testimonials-left">
-          <div className="pill secondary-pill">Patient Experiences</div>
-          <h2>What our patients are saying about their recovery</h2>
-          <p>
-            Real experiences from patients who trusted our clinic for pain
-            relief, rehabilitation, and improved mobility through personalized
-            physiotherapy care.
-          </p>
+          <div className="pill secondary-pill">{t.testimonials.badge}</div>
+          <h2>{t.testimonials.title}</h2>
+          <p>{t.testimonials.text}</p>
         </div>
 
         <div className="testimonials-right">
@@ -367,12 +600,14 @@ function Testimonials() {
             <div key={testimonial.name} className="testimonial-card">
               <div className="quote-mark">”</div>
               <div className="testimonial-body">
-                <p className="testimonial-text">{testimonial.content}</p>
+                <p className="testimonial-text">
+                  {testimonial.content[language]}
+                </p>
                 <div className="testimonial-user">
                   <img src={testimonial.image} alt={testimonial.name} />
                   <div>
                     <h4>{testimonial.name}</h4>
-                    <p>{testimonial.role}</p>
+                    <p>{testimonial.role[language]}</p>
                   </div>
                 </div>
               </div>
@@ -384,7 +619,32 @@ function Testimonials() {
   );
 }
 
-function Footer() {
+function Footer({
+  t,
+  language,
+}: {
+  t: (typeof content)["en"];
+  language: Language;
+}) {
+  const footerCategories = [
+    {
+      title: t.footer.categories.clinic,
+      links: footerLinks.clinic[language],
+    },
+    {
+      title: t.footer.categories.patients,
+      links: footerLinks.patients[language],
+    },
+    {
+      title: t.footer.categories.resources,
+      links: footerLinks.resources[language],
+    },
+    {
+      title: t.footer.categories.legal,
+      links: footerLinks.legal[language],
+    },
+  ];
+
   return (
     <footer className="footer">
       <div className="container footer-top">
@@ -392,18 +652,12 @@ function Footer() {
           <div className="brand brand-footer">
             <BrandLogo />
             <div>
-              <p className="brand-title">Edamah Clinic</p>
-              <p className="brand-subtitle">
-                Physical Therapy & Rehabilitation
-              </p>
+              <p className="brand-title">{t.clinicName}</p>
+              <p className="brand-subtitle">{t.clinicSubtitle}</p>
             </div>
           </div>
 
-          <p className="footer-copy">
-            Personalized physiotherapy and rehabilitation care focused on pain
-            relief, mobility, recovery, and long-term wellness in a trusted
-            clinical environment.
-          </p>
+          <p className="footer-copy">{t.footer.copy}</p>
 
           <div className="footer-contact">
             <p>+966 00 000 0000</p>
@@ -414,11 +668,11 @@ function Footer() {
         </div>
 
         <div className="footer-links-grid">
-          {Object.entries(footerLinks).map(([category, links]) => (
-            <div key={category}>
-              <h3>{category}</h3>
+          {footerCategories.map((category) => (
+            <div key={category.title}>
+              <h3>{category.title}</h3>
               <ul>
-                {links.map((link) => (
+                {category.links.map((link) => (
                   <li key={link}>
                     <a href="#">{link}</a>
                   </li>
@@ -430,11 +684,11 @@ function Footer() {
       </div>
 
       <div className="container footer-bottom">
-        <p>© 2026 Edamah Clinic. All rights reserved.</p>
+        <p>{t.footer.rights}</p>
         <div className="footer-bottom-links">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
-          <a href="#">Cookie Settings</a>
+          <a href="#">{footerLinks.legal[language][0]}</a>
+          <a href="#">{language === "en" ? "Terms of Service" : "شروط الخدمة"}</a>
+          <a href="#">{language === "en" ? "Cookie Settings" : "إعدادات ملفات تعريف الارتباط"}</a>
         </div>
       </div>
     </footer>
@@ -443,6 +697,10 @@ function Footer() {
 
 export default function Page() {
   const [scrolled, setScrolled] = useState(false);
+  const [language, setLanguage] = useState<Language>("en");
+
+  const t = content[language];
+  const isArabic = language === "ar";
 
   useEffect(() => {
     function onScroll() {
@@ -456,7 +714,7 @@ export default function Page() {
   }, []);
 
   return (
-    <div className="app">
+    <div className="app" dir={isArabic ? "rtl" : "ltr"} lang={language}>
       <style jsx global>{`
         :root {
           --bg: #f7fafa;
@@ -492,6 +750,10 @@ export default function Page() {
 
         img {
           display: block;
+        }
+
+        button {
+          font: inherit;
         }
 
         .app {
@@ -562,6 +824,7 @@ export default function Page() {
           width: 32px;
           height: 32px;
           object-fit: contain;
+          display: block;
         }
 
         .brand-title {
@@ -604,6 +867,7 @@ export default function Page() {
           font-weight: 600;
           transition: 0.25s ease;
           border: 1px solid transparent;
+          cursor: pointer;
         }
 
         .small-btn {
@@ -613,6 +877,10 @@ export default function Page() {
 
         .full-btn {
           width: 100%;
+        }
+
+        .language-btn {
+          border: 1px solid rgba(111, 150, 160, 0.18);
         }
 
         .primary-btn {
@@ -1230,6 +1498,37 @@ export default function Page() {
           gap: 18px;
         }
 
+        [dir="rtl"] {
+          text-align: right;
+        }
+
+        [dir="rtl"] .brand,
+        [dir="rtl"] .nav-inner,
+        [dir="rtl"] .desktop-nav,
+        [dir="rtl"] .desktop-actions,
+        [dir="rtl"] .hero-actions,
+        [dir="rtl"] .testimonial-user,
+        [dir="rtl"] .footer-bottom,
+        [dir="rtl"] .floating-badge {
+          direction: rtl;
+        }
+
+        [dir="rtl"] .hero-grid,
+        [dir="rtl"] .testimonials-grid,
+        [dir="rtl"] .footer-top {
+          direction: rtl;
+        }
+
+        [dir="rtl"] .logo-carousel-track {
+          direction: ltr;
+        }
+
+        [dir="rtl"] .panel-top,
+        [dir="rtl"] .brand,
+        [dir="rtl"] .nav-inner {
+          text-align: right;
+        }
+
         @media (max-width: 980px) {
           .desktop-nav,
           .desktop-actions {
@@ -1329,31 +1628,39 @@ export default function Page() {
         }
       `}</style>
 
-      <Navbar scrolled={scrolled} />
-      <Hero />
-      <LogoCarousel />
+      <Navbar
+        scrolled={scrolled}
+        t={t}
+        language={language}
+        onToggleLanguage={() =>
+          setLanguage((prev) => (prev === "en" ? "ar" : "en"))
+        }
+      />
+
+      <Hero t={t} />
+      <LogoCarousel t={t} />
 
       <SimpleSection
         id="about"
-        title="About Edamah Clinic"
-        text="We provide patient-centered physiotherapy and rehabilitation care with a focus on restoring mobility, easing pain, and improving quality of life through modern clinical methods."
+        title={t.about.title}
+        text={t.about.text}
       />
 
       <SimpleSection
         id="services"
-        title="Our Services"
-        text="From injury rehabilitation and post-surgery recovery to chronic pain management and personalized treatment plans, our services are designed to support every stage of recovery."
+        title={t.services.title}
+        text={t.services.text}
       />
 
-      <Testimonials />
+      <Testimonials t={t} language={language} />
 
       <SimpleSection
         id="contact"
-        title="Contact Us"
-        text="Book an appointment, ask about treatment options, or reach out to learn more about how our clinic can support your recovery journey."
+        title={t.contact.title}
+        text={t.contact.text}
       />
 
-      <Footer />
+      <Footer t={t} language={language} />
     </div>
   );
 }

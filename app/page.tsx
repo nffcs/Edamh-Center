@@ -1024,25 +1024,32 @@ export default function Page() {
           align-items: center;
           gap: 18px;
           width: max-content;
-          animation: logo-scroll 18s linear infinite;
+          animation: logo-scroll 28s linear infinite;
+        }
+
+        .logo-carousel-track:hover {
+          animation-play-state: paused;
         }
 
         .logo-carousel-item {
-          width: 92px;
-          height: 92px;
-          border-radius: 999px;
-          background: white;
-          border: 1px solid rgba(120, 162, 171, 0.22);
-          box-shadow: 0 10px 24px rgba(47, 75, 83, 0.05);
+          width: 200px;
+          height: 120px;
+          border-radius: 24px;
+          background: #fff;
+          border: 1px solid rgba(120, 162, 171, 0.14);
+          box-shadow: 0 8px 20px rgba(47, 75, 83, 0.04);
           display: flex;
           align-items: center;
           justify-content: center;
           flex-shrink: 0;
+          padding: 18px 22px;
         }
 
         .logo-carousel-img {
-          width: 56px;
-          height: 56px;
+          width: 100%;
+          height: 100%;
+          max-width: 110px;
+          max-height: 70px;
           object-fit: contain;
         }
 
@@ -1311,13 +1318,14 @@ export default function Page() {
           }
 
           .logo-carousel-item {
-            width: 78px;
-            height: 78px;
+            width: 150px;
+            height: 96px;
+            padding: 14px 18px;
           }
 
           .logo-carousel-img {
-            width: 48px;
-            height: 48px;
+            max-width: 90px;
+            max-height: 56px;
           }
         }
       `}</style>

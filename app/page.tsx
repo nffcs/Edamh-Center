@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 type Language = "en" | "ar";
@@ -359,7 +360,12 @@ const footerLinks: FooterLinks = {
   },
   legal: {
     en: ["Privacy Policy", "Terms & Conditions", "Cookie Policy", "Compliance"],
-    ar: ["سياسة الخصوصية", "الشروط والأحكام", "سياسة ملفات تعريف الارتباط", "الامتثال"],
+    ar: [
+      "سياسة الخصوصية",
+      "الشروط والأحكام",
+      "سياسة ملفات تعريف الارتباط",
+      "الامتثال",
+    ],
   },
 };
 
@@ -424,29 +430,29 @@ function Navbar({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { label: t.nav.home, href: "#home" },
-    { label: t.nav.about, href: "#about" },
-    { label: t.nav.services, href: "#services" },
-    { label: t.nav.testimonials, href: "#testimonials" },
-    { label: t.nav.contact, href: "#contact" },
+    { label: t.nav.home, href: "/" },
+    { label: t.nav.about, href: "/about" },
+    { label: t.nav.services, href: "/#services" },
+    { label: t.nav.testimonials, href: "/#testimonials" },
+    { label: t.nav.contact, href: "/#contact" },
   ];
 
   return (
     <nav className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}>
       <div className="container nav-inner">
-        <a href="#home" className="brand">
+        <Link href="/" className="brand">
           <BrandLogo />
           <div>
             <p className="brand-title">{t.clinicName}</p>
             <p className="brand-subtitle">{t.clinicSubtitle}</p>
           </div>
-        </a>
+        </Link>
 
         <div className="desktop-nav">
           {navLinks.map((item) => (
-            <a key={item.label} href={item.href} className="nav-link">
+            <Link key={item.label} href={item.href} className="nav-link">
               {item.label}
-            </a>
+            </Link>
           ))}
         </div>
 
@@ -481,14 +487,14 @@ function Navbar({
         <div className="mobile-menu">
           <div className="container mobile-menu-inner">
             {navLinks.map((item) => (
-              <a
+              <Link
                 key={item.label}
                 href={item.href}
                 className="mobile-nav-link"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
 
             <button
@@ -804,7 +810,9 @@ function Footer({
         <p>{t.footer.rights}</p>
         <div className="footer-bottom-links">
           <a href="#">{footerLinks.legal[language][0]}</a>
-          <a href="#">{language === "en" ? "Terms of Service" : "شروط الخدمة"}</a>
+          <a href="#">
+            {language === "en" ? "Terms of Service" : "شروط الخدمة"}
+          </a>
           <a href="#">
             {language === "en"
               ? "Cookie Settings"

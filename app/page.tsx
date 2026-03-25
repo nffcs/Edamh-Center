@@ -367,7 +367,7 @@ function BrandLogo() {
   return (
     <div className="logo-box">
       <img
-        src="/edamah_logo_circle_exact.png"
+        src="/edamah_logo_square_exact.png"
         alt="Edamah Clinic Logo"
         className="logo-img"
       />

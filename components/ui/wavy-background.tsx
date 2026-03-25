@@ -1,5 +1,6 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import React, { useEffect, useRef, useState } from "react";
 import { createNoise3D } from "simplex-noise";
 
@@ -13,75 +14,128 @@ export const WavyBackground = ({
   blur = 10,
   speed = "fast",
   waveOpacity = 0.5,
-}: any) => {
+  ...props
+}: {
+  children?: any;
+  className?: string;
+  containerClassName?: string;
+  colors?: string[];
+  waveWidth?: number;
+  backgroundFill?: string;
+  blur?: number;
+  speed?: "slow" | "fast";
+  waveOpacity?: number;
+  [key: string]: any;
+}) => {
   const noise = createNoise3D();
+  let w: number,
+    h: number,
+    nt: number,
+    i: number,
+    x: number,
+    ctx: any,
+    canvas: any;
+
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationRef = useRef<number>();
-  const ntRef = useRef(0);
 
-  const getSpeed = () => (speed === "fast" ? 0.002 : 0.001);
+  const getSpeed = () => {
+    switch (speed) {
+      case "slow":
+        return 0.001;
+      case "fast":
+        return 0.002;
+      default:
+        return 0.001;
+    }
+  };
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+  const init = () => {
+    canvas = canvasRef.current;
+    ctx = canvas.getContext("2d");
+    w = ctx.canvas.width = window.innerWidth;
+    h = ctx.canvas.height = window.innerHeight;
+    ctx.filter = `blur(${blur}px)`;
+    nt = 0;
 
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    let w = canvas.width = window.innerWidth;
-    let h = canvas.height = window.innerHeight;
-
-    const waveColors = colors || [
-      "#38bdf8",
-      "#818cf8",
-      "#c084fc",
-      "#e879f9",
-      "#22d3ee",
-    ];
-
-    const resize = () => {
-      w = canvas.width = window.innerWidth;
-      h = canvas.height = window.innerHeight;
+    window.onresize = function () {
+      w = ctx.canvas.width = window.innerWidth;
+      h = ctx.canvas.height = window.innerHeight;
+      ctx.filter = `blur(${blur}px)`;
     };
 
-    window.addEventListener("resize", resize);
+    render();
+  };
 
-    const drawWave = () => {
-      ntRef.current += getSpeed();
+  const waveColors = colors ?? [
+    "#38bdf8",
+    "#818cf8",
+    "#c084fc",
+    "#e879f9",
+    "#22d3ee",
+  ];
 
-      ctx.fillStyle = backgroundFill || "black";
-      ctx.globalAlpha = waveOpacity;
-      ctx.fillRect(0, 0, w, h);
+  const drawWave = (n: number) => {
+    nt += getSpeed();
 
-      for (let i = 0; i < 5; i++) {
-        ctx.beginPath();
-        ctx.lineWidth = waveWidth || 50;
-        ctx.strokeStyle = waveColors[i % waveColors.length];
+    for (i = 0; i < n; i++) {
+      ctx.beginPath();
+      ctx.lineWidth = waveWidth || 50;
+      ctx.strokeStyle = waveColors[i % waveColors.length];
 
-        for (let x = 0; x < w; x += 5) {
-          const y = noise(x / 800, i * 0.3, ntRef.current) * 100;
-          ctx.lineTo(x, y + h * 0.5);
-        }
-
-        ctx.stroke();
-        ctx.closePath();
+      for (x = 0; x < w; x += 5) {
+        const y = noise(x / 800, 0.3 * i, nt) * 100;
+        ctx.lineTo(x, y + h * 0.5);
       }
 
-      animationRef.current = requestAnimationFrame(drawWave);
-    };
+      ctx.stroke();
+      ctx.closePath();
+    }
+  };
 
-    drawWave();
+  let animationId: number;
+
+  const render = () => {
+    ctx.fillStyle = backgroundFill || "black";
+    ctx.globalAlpha = waveOpacity || 0.5;
+    ctx.fillRect(0, 0, w, h);
+    drawWave(5);
+    animationId = requestAnimationFrame(render);
+  };
+
+  useEffect(() => {
+    init();
 
     return () => {
-      window.removeEventListener("resize", resize);
-      if (animationRef.current) cancelAnimationFrame(animationRef.current);
+      cancelAnimationFrame(animationId);
     };
   }, []);
 
+  const [isSafari, setIsSafari] = useState(false);
+
+  useEffect(() => {
+    setIsSafari(
+      typeof window !== "undefined" &&
+        navigator.userAgent.includes("Safari") &&
+        !navigator.userAgent.includes("Chrome")
+    );
+  }, []);
+
   return (
-    <div className={`relative ${containerClassName || ""}`}>
-      <canvas ref={canvasRef} className="absolute inset-0 z-0" />
-      <div className={`relative z-10 ${className || ""}`}>
+    <div
+      className={cn(
+        "h-screen flex flex-col items-center justify-center relative",
+        containerClassName
+      )}
+    >
+      <canvas
+        className="absolute inset-0 z-0"
+        ref={canvasRef}
+        id="canvas"
+        style={{
+          ...(isSafari ? { filter: `blur(${blur}px)` } : {}),
+        }}
+      />
+      <div className={cn("relative z-10", className)} {...props}>
         {children}
       </div>
     </div>

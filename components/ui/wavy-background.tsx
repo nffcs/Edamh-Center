@@ -51,7 +51,9 @@ export const WavyBackground = ({
 
   const init = () => {
     canvas = canvasRef.current;
-    ctx = canvas.getContext("2d");
+    ctx = canvas?.getContext("2d");
+    if (!ctx) return;
+
     w = ctx.canvas.width = window.innerWidth;
     h = ctx.canvas.height = window.innerHeight;
     ctx.filter = `blur(${blur}px)`;
@@ -95,6 +97,7 @@ export const WavyBackground = ({
   let animationId: number;
 
   const render = () => {
+    if (!ctx) return;
     ctx.fillStyle = backgroundFill || "black";
     ctx.globalAlpha = waveOpacity || 0.5;
     ctx.fillRect(0, 0, w, h);
@@ -123,19 +126,19 @@ export const WavyBackground = ({
   return (
     <div
       className={cn(
-        "h-screen flex flex-col items-center justify-center relative",
+        "relative flex flex-col items-center justify-center",
         containerClassName
       )}
     >
       <canvas
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-0 h-full w-full"
         ref={canvasRef}
         id="canvas"
         style={{
           ...(isSafari ? { filter: `blur(${blur}px)` } : {}),
         }}
       />
-      <div className={cn("relative z-10", className)} {...props}>
+      <div className={cn("relative z-10 w-full", className)} {...props}>
         {children}
       </div>
     </div>

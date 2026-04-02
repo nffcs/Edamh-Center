@@ -193,8 +193,17 @@ const content = {
       ],
     },
     contact: {
-      title: "Contact Us",
-      text: "Book an appointment, ask about treatment options, or reach out to learn more about how our clinic can support your recovery journey.",
+      title: "Start Your Recovery Journey",
+      text: "Whether you are ready to book an appointment, discuss a treatment plan, or ask about the right rehabilitation path for your condition, our team is here to guide you with clarity, care, and professional support.",
+      cardTitle: "Book your consultation today",
+      cardText:
+        "Speak with our team and take the first step toward personalized physiotherapy and long-term recovery.",
+      primaryAction: "Book Appointment",
+      secondaryAction: "Call Us",
+      phoneLabel: "Phone",
+      emailLabel: "Email",
+      locationLabel: "Location",
+      hoursLabel: "Hours",
     },
     footer: {
       copy: "Personalized physiotherapy and rehabilitation care focused on pain relief, mobility, recovery, and long-term wellness in a trusted clinical environment.",
@@ -374,8 +383,17 @@ const content = {
       ],
     },
     contact: {
-      title: "تواصل معنا",
-      text: "احجز موعدًا، أو استفسر عن خيارات العلاج، أو تواصل معنا لمعرفة كيف يمكن لعيادتنا دعم رحلتك العلاجية.",
+      title: "ابدأ رحلتك العلاجية",
+      text: "سواء كنت مستعدًا لحجز موعد، أو ترغب في مناقشة خطة علاجية، أو تحتاج إلى معرفة المسار التأهيلي الأنسب لحالتك، فإن فريقنا هنا لإرشادك بوضوح واهتمام ودعم مهني موثوق.",
+      cardTitle: "احجز استشارتك اليوم",
+      cardText:
+        "تواصل مع فريقنا واتخذ الخطوة الأولى نحو علاج طبيعي مخصص وتعافٍ طويل المدى.",
+      primaryAction: "احجز موعدًا",
+      secondaryAction: "اتصل بنا",
+      phoneLabel: "الهاتف",
+      emailLabel: "البريد الإلكتروني",
+      locationLabel: "الموقع",
+      hoursLabel: "ساعات العمل",
     },
     footer: {
       copy: "رعاية علاج طبيعي وإعادة تأهيل مخصصة تركز على تخفيف الألم وتحسين الحركة ودعم التعافي والعافية طويلة المدى في بيئة علاجية موثوقة.",
@@ -621,12 +639,20 @@ function Hero({ t }: { t: (typeof content)["en"] }) {
   const [mousePosition, setMousePosition] = useState({ x: 300, y: 200 });
 
   useEffect(() => {
+    let frame = 0;
+
     function handleMouseMove(e: MouseEvent) {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        setMousePosition({ x: e.clientX, y: e.clientY });
+      });
     }
 
     window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
   }, []);
 
   return (
@@ -770,17 +796,13 @@ function WhyUs({ t }: { t: (typeof content)["en"] }) {
         </div>
 
         <div className="why-card why-card-light">
-          <div className="why-card-icon why-card-icon-light">
-            {c.personalized.icon}
-          </div>
+          <div className="why-card-icon">{c.personalized.icon}</div>
           <h3 className="why-card-title">{c.personalized.title}</h3>
           <p className="why-card-text">{c.personalized.body}</p>
         </div>
 
         <div className="why-card why-card-muted">
-          <div className="why-card-icon why-card-icon-light">
-            {c.modern.icon}
-          </div>
+          <div className="why-card-icon">{c.modern.icon}</div>
           <h3 className="why-card-title">{c.modern.title}</h3>
           <p className="why-card-text">{c.modern.body}</p>
         </div>
@@ -799,17 +821,13 @@ function WhyUs({ t }: { t: (typeof content)["en"] }) {
         </div>
 
         <div className="why-card why-card-light">
-          <div className="why-card-icon why-card-icon-light">
-            {c.environment.icon}
-          </div>
+          <div className="why-card-icon">{c.environment.icon}</div>
           <h3 className="why-card-title">{c.environment.title}</h3>
           <p className="why-card-text">{c.environment.body}</p>
         </div>
 
         <div className="why-card why-card-accent why-card-wide">
-          <div className="why-card-icon why-card-icon-accent">
-            {c.science.icon}
-          </div>
+          <div className="why-card-icon">{c.science.icon}</div>
           <h3 className="why-card-title why-card-title-lg">
             {c.science.title}
           </h3>
@@ -903,6 +921,76 @@ function FAQSection({ t }: { t: (typeof content)["en"] }) {
               </div>
             );
           })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ContactSection({ t }: { t: (typeof content)["en"] }) {
+  return (
+    <section id="contact" className="contact-section">
+      <div className="container">
+        <div className="contact-shell">
+          <div className="contact-copy">
+            <div className="pill secondary-pill">{t.nav.contact}</div>
+            <h2>{t.contact.title}</h2>
+            <p>{t.contact.text}</p>
+          </div>
+
+          <div className="contact-card">
+            <div className="contact-card-glow" />
+            <div className="contact-card-inner">
+              <p className="contact-card-label">{t.clinicName}</p>
+              <h3>{t.contact.cardTitle}</h3>
+              <p>{t.contact.cardText}</p>
+
+              <div className="contact-card-actions">
+                <a href="#contact" className="primary-btn">
+                  {t.contact.primaryAction}
+                </a>
+                <a href="tel:+966000000000" className="ghost-btn">
+                  {t.contact.secondaryAction}
+                </a>
+              </div>
+
+              <div className="contact-meta">
+                <div className="contact-meta-item">
+                  <span className="contact-meta-title">
+                    {t.contact.phoneLabel}
+                  </span>
+                  <span className="contact-meta-value">+966 00 000 0000</span>
+                </div>
+
+                <div className="contact-meta-item">
+                  <span className="contact-meta-title">
+                    {t.contact.emailLabel}
+                  </span>
+                  <span className="contact-meta-value">
+                    info@edamahclinic.com
+                  </span>
+                </div>
+
+                <div className="contact-meta-item">
+                  <span className="contact-meta-title">
+                    {t.contact.locationLabel}
+                  </span>
+                  <span className="contact-meta-value">
+                    Jeddah, Saudi Arabia
+                  </span>
+                </div>
+
+                <div className="contact-meta-item">
+                  <span className="contact-meta-title">
+                    {t.contact.hoursLabel}
+                  </span>
+                  <span className="contact-meta-value">
+                    Sat - Thu: 9:00 AM - 9:00 PM
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1949,6 +2037,118 @@ export default function Page() {
           font-size: 0.96rem;
         }
 
+        .contact-section {
+          padding: 96px 0;
+          background: linear-gradient(180deg, #f7fafa 0%, #f1f7f7 100%);
+        }
+
+        .contact-shell {
+          display: grid;
+          grid-template-columns: 0.95fr 1.05fr;
+          gap: 32px;
+          align-items: center;
+        }
+
+        .contact-copy h2 {
+          margin: 0 0 18px;
+          font-size: clamp(2rem, 4vw, 3.4rem);
+          line-height: 1.08;
+        }
+
+        .contact-copy p {
+          margin: 0;
+          max-width: 640px;
+          font-size: 1.06rem;
+          line-height: 1.85;
+          color: var(--text-muted);
+        }
+
+        .contact-card {
+          position: relative;
+          border-radius: 30px;
+          padding: 1px;
+          background: linear-gradient(
+            135deg,
+            rgba(111, 150, 160, 0.24),
+            rgba(139, 191, 159, 0.24)
+          );
+          box-shadow: 0 24px 60px rgba(47, 75, 83, 0.08);
+        }
+
+        .contact-card-glow {
+          position: absolute;
+          inset: auto auto -40px -30px;
+          width: 180px;
+          height: 180px;
+          background: rgba(139, 191, 159, 0.18);
+          filter: blur(50px);
+          border-radius: 999px;
+          pointer-events: none;
+        }
+
+        .contact-card-inner {
+          position: relative;
+          border-radius: 29px;
+          background: rgba(255, 255, 255, 0.92);
+          backdrop-filter: blur(20px);
+          padding: 30px;
+        }
+
+        .contact-card-label {
+          margin: 0 0 10px;
+          font-size: 0.76rem;
+          text-transform: uppercase;
+          letter-spacing: 0.2em;
+          color: var(--secondary);
+          font-weight: 700;
+        }
+
+        .contact-card h3 {
+          margin: 0 0 12px;
+          font-size: 1.8rem;
+          line-height: 1.15;
+        }
+
+        .contact-card p {
+          margin: 0;
+          color: var(--text-muted);
+          line-height: 1.8;
+        }
+
+        .contact-card-actions {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 12px;
+          margin-top: 26px;
+        }
+
+        .contact-meta {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 14px;
+          margin-top: 28px;
+          padding-top: 22px;
+          border-top: 1px solid rgba(111, 150, 160, 0.12);
+        }
+
+        .contact-meta-item {
+          display: grid;
+          gap: 4px;
+        }
+
+        .contact-meta-title {
+          font-size: 0.78rem;
+          color: var(--text-soft);
+          text-transform: uppercase;
+          letter-spacing: 0.16em;
+        }
+
+        .contact-meta-value {
+          font-size: 0.95rem;
+          color: var(--primary);
+          font-weight: 600;
+        }
+
         .footer {
           background: linear-gradient(to bottom, white 0%, #f4f8f8 100%);
           border-top: 1px solid rgba(111, 150, 160, 0.1);
@@ -2041,7 +2241,8 @@ export default function Page() {
         [dir="rtl"] .testimonial-user,
         [dir="rtl"] .footer-bottom,
         [dir="rtl"] .floating-badge,
-        [dir="rtl"] .why-card-stat {
+        [dir="rtl"] .why-card-stat,
+        [dir="rtl"] .contact-card-actions {
           direction: rtl;
         }
 
@@ -2049,7 +2250,8 @@ export default function Page() {
         [dir="rtl"] .testimonials-grid,
         [dir="rtl"] .faq-grid,
         [dir="rtl"] .footer-top,
-        [dir="rtl"] .whyus-grid {
+        [dir="rtl"] .whyus-grid,
+        [dir="rtl"] .contact-shell {
           direction: rtl;
         }
 
@@ -2081,7 +2283,8 @@ export default function Page() {
           .hero-grid,
           .testimonials-grid,
           .faq-grid,
-          .footer-top {
+          .footer-top,
+          .contact-shell {
             grid-template-columns: 1fr;
           }
 
@@ -2131,14 +2334,16 @@ export default function Page() {
           .testimonials-left p,
           .logo-strip-text,
           .faq-left p,
-          .whyus-header p {
+          .whyus-header p,
+          .contact-copy p {
             font-size: 1rem;
           }
 
           .feature-cards,
           .steps-grid,
           .footer-links-grid,
-          .whyus-grid {
+          .whyus-grid,
+          .contact-meta {
             grid-template-columns: 1fr;
           }
 
@@ -2154,7 +2359,8 @@ export default function Page() {
           .testimonials-section,
           .logo-carousel-section,
           .faq-section,
-          .whyus-section {
+          .whyus-section,
+          .contact-section {
             padding: 72px 0;
           }
 
@@ -2203,6 +2409,10 @@ export default function Page() {
           .why-card-stat-num {
             font-size: 2.4rem;
           }
+
+          .contact-card-inner {
+            padding: 22px;
+          }
         }
       `}</style>
 
@@ -2231,11 +2441,7 @@ export default function Page() {
 
       <FAQSection t={t} />
 
-      <SimpleSection
-        id="contact"
-        title={t.contact.title}
-        text={t.contact.text}
-      />
+      <ContactSection t={t} />
 
       <Footer t={t} language={language} />
     </div>

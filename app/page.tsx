@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useState } from "react";
 
 type Language = "en" | "ar";
@@ -106,6 +105,50 @@ const content = {
     services: {
       title: "Our Services",
       text: "From injury rehabilitation and post-surgery recovery to chronic pain management and personalized treatment plans, our services are designed to support every stage of recovery.",
+    },
+    whyUs: {
+      badge: "Why Choose Us",
+      title: "The clinic that puts your recovery first",
+      subtitle:
+        "From your first visit to your last session, every detail is designed around your comfort, progress, and long-term wellbeing.",
+      cards: {
+        expert: {
+          title: "Expert Therapists",
+          body: "Our licensed physiotherapists bring years of specialized clinical experience across orthopedics, sports injuries, and neurological rehabilitation — so you're always in trusted hands.",
+          stat: "10+",
+          statLabel: "Years avg. experience",
+          icon: "✦",
+        },
+        personalized: {
+          title: "Fully Personalized Plans",
+          body: "No two patients are alike. Every treatment plan is built from scratch around your condition, lifestyle, and recovery goals.",
+          icon: "◌",
+        },
+        modern: {
+          title: "Modern Equipment",
+          body: "We invest in the latest physiotherapy technology to accelerate healing and improve outcomes.",
+          icon: "◎",
+        },
+        results: {
+          title: "Results You Can Measure",
+          body: "We track your progress at every stage — so you always know exactly how far you've come and what's ahead.",
+          stat: "95%",
+          statLabel: "Patient satisfaction rate",
+          icon: "▲",
+        },
+        environment: {
+          title: "Calm & Welcoming Space",
+          body: "Our clinic is designed to feel less like a medical facility and more like a place of healing — quiet, clean, and patient-focused.",
+          icon: "✳",
+        },
+        science: {
+          title: "Evidence-Based Care",
+          body: "Every technique we use is grounded in the latest clinical research and best practices in modern physiotherapy.",
+          stat: "100%",
+          statLabel: "Science-backed methods",
+          icon: "◆",
+        },
+      },
     },
     testimonials: {
       badge: "Patient Experiences",
@@ -243,6 +286,50 @@ const content = {
     services: {
       title: "خدماتنا",
       text: "من إعادة تأهيل الإصابات والتعافي بعد العمليات الجراحية إلى علاج الألم المزمن والخطط العلاجية المخصصة، صُممت خدماتنا لدعم كل مرحلة من مراحل التعافي.",
+    },
+    whyUs: {
+      badge: "لماذا تختارنا",
+      title: "العيادة التي تضع تعافيك في المقام الأول",
+      subtitle:
+        "من زيارتك الأولى حتى جلستك الأخيرة، كل تفصيلة مصممة حول راحتك وتقدمك وصحتك على المدى البعيد.",
+      cards: {
+        expert: {
+          title: "معالجون متخصصون",
+          body: "يتمتع معالجونا المرخصون بسنوات من الخبرة السريرية المتخصصة في التقويم، وإصابات الرياضة، وإعادة التأهيل العصبي — لتكون دائمًا في أيدٍ موثوقة.",
+          stat: "+10",
+          statLabel: "سنوات متوسط الخبرة",
+          icon: "✦",
+        },
+        personalized: {
+          title: "خطط مخصصة بالكامل",
+          body: "لا يوجد مريضان متشابهان. كل خطة علاجية تُبنى من الصفر وفقًا لحالتك وأسلوب حياتك وأهداف تعافيك.",
+          icon: "◌",
+        },
+        modern: {
+          title: "معدات حديثة",
+          body: "نستثمر في أحدث تقنيات العلاج الطبيعي لتسريع الشفاء وتحسين النتائج.",
+          icon: "◎",
+        },
+        results: {
+          title: "نتائج يمكن قياسها",
+          body: "نتتبع تقدمك في كل مرحلة — حتى تعرف دائمًا بالضبط كم قطعت من الشوط وما الذي ينتظرك.",
+          stat: "95%",
+          statLabel: "معدل رضا المرضى",
+          icon: "▲",
+        },
+        environment: {
+          title: "بيئة هادئة ومرحّبة",
+          body: "عيادتنا مصممة لتبدو أقل كمنشأة طبية وأكثر كمكان للشفاء — هادئة ونظيفة وتركز على المريض.",
+          icon: "✳",
+        },
+        science: {
+          title: "رعاية قائمة على الأدلة",
+          body: "كل تقنية نستخدمها مبنية على أحدث الأبحاث السريرية وأفضل الممارسات في العلاج الطبيعي الحديث.",
+          stat: "100%",
+          statLabel: "أساليب مدعومة علميًا",
+          icon: "◆",
+        },
+      },
     },
     testimonials: {
       badge: "تجارب المرضى",
@@ -430,29 +517,29 @@ function Navbar({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { label: t.nav.home, href: "/" },
-    { label: t.nav.about, href: "/about" },
-    { label: t.nav.services, href: "/#services" },
-    { label: t.nav.testimonials, href: "/#testimonials" },
-    { label: t.nav.contact, href: "/#contact" },
+    { label: t.nav.home, href: "#home" },
+    { label: t.nav.about, href: "#about" },
+    { label: t.nav.services, href: "#services" },
+    { label: t.nav.testimonials, href: "#testimonials" },
+    { label: t.nav.contact, href: "#contact" },
   ];
 
   return (
     <nav className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}>
       <div className="container nav-inner">
-        <Link href="/" className="brand">
+        <a href="#home" className="brand">
           <BrandLogo />
           <div>
             <p className="brand-title">{t.clinicName}</p>
             <p className="brand-subtitle">{t.clinicSubtitle}</p>
           </div>
-        </Link>
+        </a>
 
         <div className="desktop-nav">
           {navLinks.map((item) => (
-            <Link key={item.label} href={item.href} className="nav-link">
+            <a key={item.label} href={item.href} className="nav-link">
               {item.label}
-            </Link>
+            </a>
           ))}
         </div>
 
@@ -487,14 +574,14 @@ function Navbar({
         <div className="mobile-menu">
           <div className="container mobile-menu-inner">
             {navLinks.map((item) => (
-              <Link
+              <a
                 key={item.label}
                 href={item.href}
                 className="mobile-nav-link"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.label}
-              </Link>
+              </a>
             ))}
 
             <button
@@ -658,6 +745,86 @@ function SimpleSection({
   );
 }
 
+function WhyUs({ t }: { t: (typeof content)["en"] }) {
+  const w = t.whyUs;
+  const c = w.cards;
+
+  return (
+    <section className="whyus-section">
+      <div className="container whyus-header">
+        <div className="pill secondary-pill">{w.badge}</div>
+        <h2>{w.title}</h2>
+        <p>{w.subtitle}</p>
+      </div>
+
+      <div className="container whyus-grid">
+        <div className="why-card why-card-dark why-card-wide">
+          <div className="why-card-icon">{c.expert.icon}</div>
+          <h3 className="why-card-title why-card-title-lg">{c.expert.title}</h3>
+          <p className="why-card-text">{c.expert.body}</p>
+          <div className="why-card-stat">
+            <span className="why-card-stat-num">{c.expert.stat}</span>
+            <span className="why-card-stat-label">{c.expert.statLabel}</span>
+          </div>
+          <div className="why-card-mark">{c.expert.icon}</div>
+        </div>
+
+        <div className="why-card why-card-light">
+          <div className="why-card-icon why-card-icon-light">
+            {c.personalized.icon}
+          </div>
+          <h3 className="why-card-title">{c.personalized.title}</h3>
+          <p className="why-card-text">{c.personalized.body}</p>
+        </div>
+
+        <div className="why-card why-card-muted">
+          <div className="why-card-icon why-card-icon-light">
+            {c.modern.icon}
+          </div>
+          <h3 className="why-card-title">{c.modern.title}</h3>
+          <p className="why-card-text">{c.modern.body}</p>
+        </div>
+
+        <div className="why-card why-card-teal why-card-wide">
+          <div className="why-card-icon">{c.results.icon}</div>
+          <h3 className="why-card-title why-card-title-lg">
+            {c.results.title}
+          </h3>
+          <p className="why-card-text">{c.results.body}</p>
+          <div className="why-card-stat">
+            <span className="why-card-stat-num">{c.results.stat}</span>
+            <span className="why-card-stat-label">{c.results.statLabel}</span>
+          </div>
+          <div className="why-card-mark">{c.results.icon}</div>
+        </div>
+
+        <div className="why-card why-card-light">
+          <div className="why-card-icon why-card-icon-light">
+            {c.environment.icon}
+          </div>
+          <h3 className="why-card-title">{c.environment.title}</h3>
+          <p className="why-card-text">{c.environment.body}</p>
+        </div>
+
+        <div className="why-card why-card-accent why-card-wide">
+          <div className="why-card-icon why-card-icon-accent">
+            {c.science.icon}
+          </div>
+          <h3 className="why-card-title why-card-title-lg">
+            {c.science.title}
+          </h3>
+          <p className="why-card-text">{c.science.body}</p>
+          <div className="why-card-stat">
+            <span className="why-card-stat-num">{c.science.stat}</span>
+            <span className="why-card-stat-label">{c.science.statLabel}</span>
+          </div>
+          <div className="why-card-mark">{c.science.icon}</div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Testimonials({
   t,
   language,
@@ -677,7 +844,7 @@ function Testimonials({
         <div className="testimonials-right">
           {testimonials.map((testimonial) => (
             <div key={testimonial.name} className="testimonial-card">
-              <div className="quote-mark">”</div>
+              <div className="quote-mark">"</div>
               <div className="testimonial-body">
                 <p className="testimonial-text">
                   {testimonial.content[language]}
@@ -1458,6 +1625,153 @@ export default function Page() {
           }
         }
 
+        .whyus-section {
+          padding: 96px 0;
+          background: var(--bg);
+          overflow: hidden;
+        }
+
+        .whyus-header {
+          margin-bottom: 52px;
+        }
+
+        .whyus-header h2 {
+          margin: 12px 0 16px;
+          font-size: clamp(2rem, 4vw, 3.2rem);
+          line-height: 1.08;
+          color: var(--primary);
+        }
+
+        .whyus-header p {
+          font-size: 1.06rem;
+          line-height: 1.8;
+          color: var(--text-muted);
+          max-width: 640px;
+        }
+
+        .whyus-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 16px;
+        }
+
+        .why-card {
+          position: relative;
+          overflow: hidden;
+          border-radius: 26px;
+          padding: 30px;
+          transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .why-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 22px 48px rgba(47, 75, 83, 0.1);
+        }
+
+        .why-card-wide {
+          grid-column: span 2;
+        }
+
+        .why-card-dark {
+          background: var(--primary);
+          color: white;
+        }
+
+        .why-card-teal {
+          background: var(--secondary);
+          color: white;
+        }
+
+        .why-card-accent {
+          background: var(--accent);
+          color: var(--primary);
+        }
+
+        .why-card-light {
+          background: white;
+          color: var(--primary);
+          border: 1px solid rgba(111, 150, 160, 0.14);
+          box-shadow: 0 10px 24px rgba(47, 75, 83, 0.05);
+        }
+
+        .why-card-muted {
+          background: rgba(111, 150, 160, 0.08);
+          color: var(--primary);
+          border: 1px solid rgba(111, 150, 160, 0.14);
+        }
+
+        .why-card-icon {
+          width: 52px;
+          height: 52px;
+          border-radius: 16px;
+          display: grid;
+          place-items: center;
+          font-size: 1.25rem;
+          margin-bottom: 18px;
+          background: rgba(255, 255, 255, 0.12);
+        }
+
+        .why-card-light .why-card-icon,
+        .why-card-muted .why-card-icon {
+          background: rgba(47, 75, 83, 0.08);
+        }
+
+        .why-card-accent .why-card-icon {
+          background: rgba(47, 75, 83, 0.12);
+        }
+
+        .why-card-title {
+          margin: 0 0 12px;
+          font-size: 1.35rem;
+          line-height: 1.18;
+          font-weight: 700;
+        }
+
+        .why-card-title-lg {
+          font-size: clamp(1.45rem, 2.4vw, 2rem);
+        }
+
+        .why-card-text {
+          margin: 0;
+          font-size: 0.97rem;
+          line-height: 1.78;
+          opacity: 0.86;
+          max-width: 520px;
+        }
+
+        .why-card-stat {
+          display: flex;
+          align-items: flex-end;
+          gap: 10px;
+          margin-top: 28px;
+        }
+
+        .why-card-stat-num {
+          font-size: 3rem;
+          line-height: 1;
+          font-weight: 800;
+          letter-spacing: -0.04em;
+        }
+
+        .why-card-stat-label {
+          font-size: 0.84rem;
+          line-height: 1.4;
+          opacity: 0.7;
+          max-width: 120px;
+          padding-bottom: 5px;
+        }
+
+        .why-card-mark {
+          position: absolute;
+          right: -12px;
+          bottom: -18px;
+          font-size: 9rem;
+          line-height: 1;
+          opacity: 0.07;
+          user-select: none;
+          pointer-events: none;
+        }
+
         .testimonials-section {
           padding: 88px 0;
           background: var(--bg);
@@ -1726,14 +2040,16 @@ export default function Page() {
         [dir="rtl"] .hero-actions,
         [dir="rtl"] .testimonial-user,
         [dir="rtl"] .footer-bottom,
-        [dir="rtl"] .floating-badge {
+        [dir="rtl"] .floating-badge,
+        [dir="rtl"] .why-card-stat {
           direction: rtl;
         }
 
         [dir="rtl"] .hero-grid,
         [dir="rtl"] .testimonials-grid,
         [dir="rtl"] .faq-grid,
-        [dir="rtl"] .footer-top {
+        [dir="rtl"] .footer-top,
+        [dir="rtl"] .whyus-grid {
           direction: rtl;
         }
 
@@ -1745,6 +2061,11 @@ export default function Page() {
         [dir="rtl"] .brand,
         [dir="rtl"] .nav-inner {
           text-align: right;
+        }
+
+        [dir="rtl"] .why-card-mark {
+          right: auto;
+          left: -12px;
         }
 
         @media (max-width: 980px) {
@@ -1762,6 +2083,14 @@ export default function Page() {
           .faq-grid,
           .footer-top {
             grid-template-columns: 1fr;
+          }
+
+          .whyus-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+
+          .why-card-wide {
+            grid-column: span 1;
           }
 
           .hero {
@@ -1801,20 +2130,31 @@ export default function Page() {
           .simple-section p,
           .testimonials-left p,
           .logo-strip-text,
-          .faq-left p {
+          .faq-left p,
+          .whyus-header p {
             font-size: 1rem;
           }
 
           .feature-cards,
           .steps-grid,
-          .footer-links-grid {
+          .footer-links-grid,
+          .whyus-grid {
             grid-template-columns: 1fr;
+          }
+
+          .why-card-wide {
+            grid-column: span 1;
+          }
+
+          .why-card-mark {
+            display: none;
           }
 
           .simple-section,
           .testimonials-section,
           .logo-carousel-section,
-          .faq-section {
+          .faq-section,
+          .whyus-section {
             padding: 72px 0;
           }
 
@@ -1848,12 +2188,20 @@ export default function Page() {
           }
 
           .faq-question {
-            padding: 18px 18px;
+            padding: 18px;
             font-size: 0.95rem;
           }
 
           .faq-answer {
             padding: 0 18px 18px;
+          }
+
+          .why-card {
+            padding: 24px;
+          }
+
+          .why-card-stat-num {
+            font-size: 2.4rem;
           }
         }
       `}</style>
@@ -1876,6 +2224,8 @@ export default function Page() {
         title={t.services.title}
         text={t.services.text}
       />
+
+      <WhyUs t={t} />
 
       <Testimonials t={t} language={language} />
 

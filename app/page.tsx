@@ -27,7 +27,7 @@ type FooterLinks = Record<
 
 const content = {
   en: {
-    clinicName: "Edamah Clinic",
+    clinicName: "Edamah Center",
     clinicSubtitle: "Physical Therapy & Rehabilitation",
     nav: {
       home: "Home",
@@ -180,11 +180,7 @@ const content = {
           answer:
             "Session length can vary depending on the treatment plan, but most appointments typically last between 30 and 60 minutes.",
         },
-        {
-          question: "Do you accept insurance?",
-          answer:
-            "Insurance availability depends on the provider and plan. Please contact the clinic directly to confirm your coverage.",
-        },
+
         {
           question: "What should I bring to my first appointment?",
           answer:
@@ -217,8 +213,8 @@ const content = {
     },
   },
   ar: {
-    clinicName: "عيادة إدامة",
-    clinicSubtitle: "العلاج الطبيعي وإعادة التأهيل",
+    clinicName: "مركز ادمة",
+    clinicSubtitle: "العلاج الطبيعي و التأهيل",
     nav: {
       home: "الرئيسية",
       about: "من نحن",
@@ -370,11 +366,7 @@ const content = {
           answer:
             "تختلف مدة الجلسة حسب الخطة العلاجية، لكن معظم المواعيد تستغرق عادة من 30 إلى 60 دقيقة.",
         },
-        {
-          question: "هل تقبلون التأمين؟",
-          answer:
-            "يعتمد قبول التأمين على مزود الخدمة والخطة. يرجى التواصل مع العيادة مباشرة لتأكيد التغطية.",
-        },
+
         {
           question: "ماذا أحضر في أول موعد؟",
           answer:
@@ -867,13 +859,7 @@ function Testimonials({
                 <p className="testimonial-text">
                   {testimonial.content[language]}
                 </p>
-                <div className="testimonial-user">
-                  <img src={testimonial.image} alt={testimonial.name} />
-                  <div>
-                    <h4>{testimonial.name}</h4>
-                    <p>{testimonial.role[language]}</p>
-                  </div>
-                </div>
+                <div className="testimonial-user" style={{ display: "none" }} />
               </div>
             </div>
           ))}
@@ -928,6 +914,9 @@ function FAQSection({ t }: { t: (typeof content)["en"] }) {
 }
 
 function ContactSection({ t }: { t: (typeof content)["en"] }) {
+  const whatsappLink =
+    "https://wa.me/966557571172?text=Hello%20I%20want%20to%20book%20an%20appointment";
+
   return (
     <section id="contact" className="contact-section">
       <div className="container">
@@ -946,10 +935,11 @@ function ContactSection({ t }: { t: (typeof content)["en"] }) {
               <p>{t.contact.cardText}</p>
 
               <div className="contact-card-actions">
-                <a href="#contact" className="primary-btn">
+                <a href={whatsappLink} target="_blank" className="primary-btn">
                   {t.contact.primaryAction}
                 </a>
-                <a href="tel:+966000000000" className="ghost-btn">
+
+                <a href="tel:+966557571172" className="ghost-btn">
                   {t.contact.secondaryAction}
                 </a>
               </div>
@@ -959,34 +949,21 @@ function ContactSection({ t }: { t: (typeof content)["en"] }) {
                   <span className="contact-meta-title">
                     {t.contact.phoneLabel}
                   </span>
-                  <span className="contact-meta-value">+966 00 000 0000</span>
-                </div>
-
-                <div className="contact-meta-item">
-                  <span className="contact-meta-title">
-                    {t.contact.emailLabel}
-                  </span>
-                  <span className="contact-meta-value">
-                    info@edamahclinic.com
-                  </span>
+                  <span className="contact-meta-value">+966 55 757 1172</span>
                 </div>
 
                 <div className="contact-meta-item">
                   <span className="contact-meta-title">
                     {t.contact.locationLabel}
                   </span>
-                  <span className="contact-meta-value">
-                    Jeddah, Saudi Arabia
-                  </span>
+                  <span className="contact-meta-value">Buraydah</span>
                 </div>
 
                 <div className="contact-meta-item">
                   <span className="contact-meta-title">
                     {t.contact.hoursLabel}
                   </span>
-                  <span className="contact-meta-value">
-                    Sat - Thu: 9:00 AM - 9:00 PM
-                  </span>
+                  <span className="contact-meta-value">1:00 PM – 9:00 PM</span>
                 </div>
               </div>
             </div>
@@ -996,7 +973,6 @@ function ContactSection({ t }: { t: (typeof content)["en"] }) {
     </section>
   );
 }
-
 function Footer({
   t,
   language,
@@ -1007,22 +983,21 @@ function Footer({
   const footerCategories = [
     {
       title: t.footer.categories.clinic,
-      links: footerLinks.clinic[language],
+      links:
+        language === "en"
+          ? ["About", "Services", "Contact"]
+          : ["من نحن", "الخدمات", "تواصل معنا"],
     },
     {
       title: t.footer.categories.patients,
-      links: footerLinks.patients[language],
+      links:
+        language === "en"
+          ? ["Book Appointment", "FAQ"]
+          : ["حجز موعد", "الأسئلة الشائعة"],
     },
-    {
-      title: t.footer.categories.resources,
-      links: footerLinks.resources[language],
-    },
-    {
-      title: t.footer.categories.legal,
-      links: footerLinks.legal[language],
-    },
+  
   ];
-
+}
   return (
     <footer className="footer">
       <div className="container footer-top">
@@ -1037,13 +1012,11 @@ function Footer({
 
           <p className="footer-copy">{t.footer.copy}</p>
 
-          <div className="footer-contact">
-            <p>+966 00 000 0000</p>
-            <p>info@edamahclinic.com</p>
-            <p>Jeddah, Saudi Arabia</p>
-            <p>Sat - Thu: 9:00 AM - 9:00 PM</p>
-          </div>
-        </div>
+         <div className="footer-contact">
+  <p>+966 55 757 1172</p>
+  <p>Buraydah</p>
+  <p>1:00 PM – 9:00 PM</p>
+</div>
 
         <div className="footer-links-grid">
           {footerCategories.map((category) => (
@@ -1077,11 +1050,11 @@ function Footer({
       </div>
     </footer>
   );
-}
+
 
 export default function Page() {
   const [scrolled, setScrolled] = useState(false);
-  const [language, setLanguage] = useState<Language>("en");
+  const [language, setLanguage] = useState<Language>("ar");
 
   const t = content[language];
   const isArabic = language === "ar";

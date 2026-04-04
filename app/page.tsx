@@ -421,7 +421,7 @@ const testimonials: Testimonial[] = [
       "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=200",
     content: {
       en: "What stood out most was how personalized everything felt. The therapists listened carefully, explained every stage, and helped me return to daily activity with much less discomfort.",
-      ar: "أكثر ما لفت انتباهي هو مدى تخصيص الرعاية لكل حالتي. استمع المعالجون بعناية وشرحوا كل مرحلة وساعدوني على العودة للنشاط اليومي براحة أكبر.",
+      ar: "أكثر ما لفت انتباهي هو مدى تخصيص الرعاية لكل حالتي. استمع المعالجون بعناية وشرحوا لي كل مرحلة وساعدوني على العود إلى نشاطي اليومي براحة أكبر.",
     },
   },
 ];
@@ -943,7 +943,9 @@ function ContactSection({
                   <span className="contact-meta-title">
                     {t.contact.phoneLabel}
                   </span>
-                  <span className="contact-meta-value">+966 55 757 1172</span>
+                  <span className="contact-meta-value" dir="ltr">
+                    +966 55 757 1172
+                  </span>
                 </div>
 
                 <div className="contact-meta-item">
@@ -1030,7 +1032,7 @@ function Footer({
 
           <div className="footer-contact">
             <p>+966 55 757 1172</p>
-            <p>Buraydah</p>
+            <p></p>
             <p>1:00 PM – 9:00 PM</p>
           </div>
         </div>

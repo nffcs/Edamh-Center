@@ -17,17 +17,9 @@ type Testimonial = {
   };
 };
 
-type FooterLinks = Record<
-  string,
-  {
-    en: string[];
-    ar: string[];
-  }
->;
-
 const content = {
   en: {
-    clinicName: "Edamah Center",
+    clinicName: "Edamh Center",
     clinicSubtitle: "Physical Therapy & Rehabilitation",
     nav: {
       home: "Home",
@@ -99,7 +91,7 @@ const content = {
       text: "Collaborating with leading healthcare and wellness organizations",
     },
     about: {
-      title: "About Edamah Clinic",
+      title: "About Edamh Center",
       text: "We provide patient-centered physiotherapy and rehabilitation care with a focus on restoring mobility, easing pain, and improving quality of life through modern clinical methods.",
     },
     services: {
@@ -108,7 +100,7 @@ const content = {
     },
     whyUs: {
       badge: "Why Choose Us",
-      title: "The clinic that puts your recovery first",
+      title: "The center that puts your recovery first",
       subtitle:
         "From your first visit to your last session, every detail is designed around your comfort, progress, and long-term wellbeing.",
       cards: {
@@ -138,7 +130,7 @@ const content = {
         },
         environment: {
           title: "Calm & Welcoming Space",
-          body: "Our clinic is designed to feel less like a medical facility and more like a place of healing — quiet, clean, and patient-focused.",
+          body: "Our center is designed to feel less like a medical facility and more like a place of healing — quiet, clean, and patient-focused.",
           icon: "✳",
         },
         science: {
@@ -153,15 +145,15 @@ const content = {
     testimonials: {
       badge: "Patient Experiences",
       title: "What our patients are saying about their recovery",
-      text: "Real experiences from patients who trusted our clinic for pain relief, rehabilitation, and improved mobility through personalized physiotherapy care.",
+      text: "Real experiences from patients who trusted our center for pain relief, rehabilitation, and improved mobility through personalized physiotherapy care.",
     },
     faq: {
       badge: "Questions & Answers",
       title: "Frequently asked questions",
-      text: "Find quick answers about appointments, treatment plans, insurance, and what to expect during your visit.",
+      text: "Find quick answers about appointments, treatment plans, and what to expect during your visit.",
       items: [
         {
-          question: "Do I need an appointment before visiting the clinic?",
+          question: "Do I need an appointment before visiting the center?",
           answer:
             "Yes, we recommend booking an appointment in advance so our team can prepare for your visit and reduce waiting time.",
         },
@@ -178,9 +170,8 @@ const content = {
         {
           question: "How long does each session usually take?",
           answer:
-            "Session length can vary depending on the treatment plan, but most appointments typically last between 30 and 60 minutes.",
+            "Session length can vary depending on the treatment plan, but most appointments typically last between 45 and 60 minutes.",
         },
-
         {
           question: "What should I bring to my first appointment?",
           answer:
@@ -197,24 +188,21 @@ const content = {
       primaryAction: "Book Appointment",
       secondaryAction: "Call Us",
       phoneLabel: "Phone",
-      emailLabel: "Email",
       locationLabel: "Location",
       hoursLabel: "Hours",
     },
     footer: {
       copy: "Personalized physiotherapy and rehabilitation care focused on pain relief, mobility, recovery, and long-term wellness in a trusted clinical environment.",
-      rights: "© 2026 Edamah Clinic. All rights reserved.",
+      rights: "© 2026 Edamh Center. All rights reserved.",
       categories: {
-        clinic: "Clinic",
+        clinic: "Center",
         patients: "Patients",
-        resources: "Resources",
-        legal: "Legal",
       },
     },
   },
   ar: {
     clinicName: "مركز ادمة",
-    clinicSubtitle: "العلاج الطبيعي و التأهيل",
+    clinicSubtitle: "علاج طبيعي وتاهيل طبي",
     nav: {
       home: "الرئيسية",
       about: "من نحن",
@@ -285,7 +273,7 @@ const content = {
       text: "نتعاون مع جهات رائدة في الرعاية الصحية والعافية",
     },
     about: {
-      title: "عن عيادة إدامة",
+      title: "عن مركز ادمة",
       text: "نقدم رعاية علاج طبيعي وإعادة تأهيل تركز على المريض بهدف استعادة الحركة وتخفيف الألم وتحسين جودة الحياة من خلال أساليب علاجية حديثة.",
     },
     services: {
@@ -294,7 +282,7 @@ const content = {
     },
     whyUs: {
       badge: "لماذا تختارنا",
-      title: "العيادة التي تضع تعافيك في المقام الأول",
+      title: "المركز الذي يضع تعافيك في المقام الأول",
       subtitle:
         "من زيارتك الأولى حتى جلستك الأخيرة، كل تفصيلة مصممة حول راحتك وتقدمك وصحتك على المدى البعيد.",
       cards: {
@@ -324,7 +312,7 @@ const content = {
         },
         environment: {
           title: "بيئة هادئة ومرحّبة",
-          body: "عيادتنا مصممة لتبدو أقل كمنشأة طبية وأكثر كمكان للشفاء — هادئة ونظيفة وتركز على المريض.",
+          body: "مركزنا مصمم ليبدو أقل كمنشأة طبية وأكثر كمكان للشفاء — هادئ ونظيف ويركز على المريض.",
           icon: "✳",
         },
         science: {
@@ -339,15 +327,15 @@ const content = {
     testimonials: {
       badge: "تجارب المرضى",
       title: "ماذا يقول مرضانا عن رحلتهم العلاجية",
-      text: "تجارب حقيقية من مرضى وثقوا بعيادتنا لتخفيف الألم وإعادة التأهيل وتحسين الحركة من خلال رعاية علاج طبيعي مخصصة.",
+      text: "تجارب حقيقية من مرضى وثقوا بمركزنا لتخفيف الألم وإعادة التأهيل وتحسين الحركة من خلال رعاية علاج طبيعي مخصصة.",
     },
     faq: {
       badge: "الأسئلة والأجوبة",
       title: "الأسئلة الشائعة",
-      text: "اعثر على إجابات سريعة حول المواعيد، والخطط العلاجية، والتأمين، وما يمكن توقعه أثناء زيارتك.",
+      text: "اعثر على إجابات سريعة حول المواعيد، والخطط العلاجية، وما يمكن توقعه أثناء زيارتك.",
       items: [
         {
-          question: "هل أحتاج إلى موعد قبل زيارة العيادة؟",
+          question: "هل أحتاج إلى موعد قبل زيارة المركز؟",
           answer:
             "نعم، نوصي بحجز موعد مسبقًا حتى يتمكن فريقنا من الاستعداد لزيارتك وتقليل وقت الانتظار.",
         },
@@ -364,9 +352,8 @@ const content = {
         {
           question: "كم تستغرق الجلسة عادة؟",
           answer:
-            "تختلف مدة الجلسة حسب الخطة العلاجية، لكن معظم المواعيد تستغرق عادة من 30 إلى 60 دقيقة.",
+            "تختلف مدة الجلسة حسب الخطة العلاجية، لكن معظم المواعيد تستغرق عادة من 45 إلى 60 دقيقة.",
         },
-
         {
           question: "ماذا أحضر في أول موعد؟",
           answer:
@@ -383,18 +370,15 @@ const content = {
       primaryAction: "احجز موعدًا",
       secondaryAction: "اتصل بنا",
       phoneLabel: "الهاتف",
-      emailLabel: "البريد الإلكتروني",
       locationLabel: "الموقع",
       hoursLabel: "ساعات العمل",
     },
     footer: {
       copy: "رعاية علاج طبيعي وإعادة تأهيل مخصصة تركز على تخفيف الألم وتحسين الحركة ودعم التعافي والعافية طويلة المدى في بيئة علاجية موثوقة.",
-      rights: "© 2026 عيادة إدامة. جميع الحقوق محفوظة.",
+      rights: "© 2026 مركز ادمة. جميع الحقوق محفوظة.",
       categories: {
-        clinic: "العيادة",
+        clinic: "المركز",
         patients: "المرضى",
-        resources: "الموارد",
-        legal: "القانونية",
       },
     },
   },
@@ -442,36 +426,18 @@ const testimonials: Testimonial[] = [
   },
 ];
 
-const footerLinks: FooterLinks = {
-  clinic: {
-    en: ["About Us", "Our Team", "Services", "Treatments"],
-    ar: ["من نحن", "فريقنا", "الخدمات", "العلاجات"],
-  },
-  patients: {
-    en: ["Book Appointment", "Insurance", "FAQ", "Patient Guide"],
-    ar: ["حجز موعد", "التأمين", "الأسئلة الشائعة", "دليل المريض"],
-  },
-  resources: {
-    en: ["Health Blog", "Recovery Tips", "Contact", "Support"],
-    ar: ["المدونة الصحية", "نصائح التعافي", "تواصل معنا", "الدعم"],
-  },
-  legal: {
-    en: ["Privacy Policy", "Terms & Conditions", "Cookie Policy", "Compliance"],
-    ar: [
-      "سياسة الخصوصية",
-      "الشروط والأحكام",
-      "سياسة ملفات تعريف الارتباط",
-      "الامتثال",
-    ],
-  },
-};
+function getWhatsappLink(language: Language) {
+  return language === "ar"
+    ? "https://wa.me/966557571172?text=مرحبًا%20أرغب%20بحجز%20موعد"
+    : "https://wa.me/966557571172?text=Hello%20I%20want%20to%20book%20an%20appointment";
+}
 
 function BrandLogo() {
   return (
     <div className="logo-box">
       <img
         src="/edamah_logo_square_exact.png"
-        alt="Edamah Clinic Logo"
+        alt="Edamh Center Logo"
         className="logo-img"
       />
     </div>
@@ -518,10 +484,12 @@ function LogoCarousel({ t }: { t: (typeof content)["en"] }) {
 function Navbar({
   scrolled,
   t,
+  language,
   onToggleLanguage,
 }: {
   scrolled: boolean;
   t: (typeof content)["en"];
+  language: Language;
   onToggleLanguage: () => void;
 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -562,11 +530,16 @@ function Navbar({
             {t.buttons.switchLanguage}
           </button>
 
-          <a href="tel:+966000000000" className="ghost-btn">
+          <a href="tel:+966557571172" className="ghost-btn">
             {t.buttons.callUs}
           </a>
 
-          <a href="#contact" className="primary-btn small-btn">
+          <a
+            href={getWhatsappLink(language)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="primary-btn small-btn"
+          >
             {t.buttons.bookNow}
           </a>
         </div>
@@ -606,7 +579,7 @@ function Navbar({
             </button>
 
             <a
-              href="tel:+966000000000"
+              href="tel:+966557571172"
               className="ghost-btn full-btn"
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -614,7 +587,9 @@ function Navbar({
             </a>
 
             <a
-              href="#contact"
+              href={getWhatsappLink(language)}
+              target="_blank"
+              rel="noopener noreferrer"
               className="primary-btn full-btn"
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -627,7 +602,13 @@ function Navbar({
   );
 }
 
-function Hero({ t }: { t: (typeof content)["en"] }) {
+function Hero({
+  t,
+  language,
+}: {
+  t: (typeof content)["en"];
+  language: Language;
+}) {
   const [mousePosition, setMousePosition] = useState({ x: 300, y: 200 });
 
   useEffect(() => {
@@ -675,7 +656,12 @@ function Hero({ t }: { t: (typeof content)["en"] }) {
           <p className="hero-text">{t.hero.text}</p>
 
           <div className="hero-actions">
-            <a href="#contact" className="primary-btn">
+            <a
+              href={getWhatsappLink(language)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="primary-btn"
+            >
               {t.buttons.bookAppointment}
             </a>
             <a href="#about" className="ghost-btn">
@@ -768,7 +754,7 @@ function WhyUs({ t }: { t: (typeof content)["en"] }) {
   const c = w.cards;
 
   return (
-    <section className="whyus-section">
+    <section id="whyus" className="whyus-section">
       <div className="container whyus-header">
         <div className="pill secondary-pill">{w.badge}</div>
         <h2>{w.title}</h2>
@@ -873,7 +859,7 @@ function FAQSection({ t }: { t: (typeof content)["en"] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="faq-section">
+    <section id="faq" className="faq-section">
       <div className="container faq-grid">
         <div className="faq-left">
           <div className="pill secondary-pill">{t.faq.badge}</div>
@@ -913,10 +899,13 @@ function FAQSection({ t }: { t: (typeof content)["en"] }) {
   );
 }
 
-function ContactSection({ t }: { t: (typeof content)["en"] }) {
-  const whatsappLink =
-    "https://wa.me/966557571172?text=Hello%20I%20want%20to%20book%20an%20appointment";
-
+function ContactSection({
+  t,
+  language,
+}: {
+  t: (typeof content)["en"];
+  language: Language;
+}) {
   return (
     <section id="contact" className="contact-section">
       <div className="container">
@@ -935,7 +924,12 @@ function ContactSection({ t }: { t: (typeof content)["en"] }) {
               <p>{t.contact.cardText}</p>
 
               <div className="contact-card-actions">
-                <a href={whatsappLink} target="_blank" className="primary-btn">
+                <a
+                  href={getWhatsappLink(language)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="primary-btn"
+                >
                   {t.contact.primaryAction}
                 </a>
 
@@ -973,6 +967,7 @@ function ContactSection({ t }: { t: (typeof content)["en"] }) {
     </section>
   );
 }
+
 function Footer({
   t,
   language,
@@ -985,19 +980,40 @@ function Footer({
       title: t.footer.categories.clinic,
       links:
         language === "en"
-          ? ["About", "Services", "Contact"]
-          : ["من نحن", "الخدمات", "تواصل معنا"],
+          ? [
+              { label: "About", href: "#about" },
+              { label: "Services", href: "#services" },
+              { label: "Contact", href: "#contact" },
+            ]
+          : [
+              { label: "من نحن", href: "#about" },
+              { label: "الخدمات", href: "#services" },
+              { label: "تواصل معنا", href: "#contact" },
+            ],
     },
     {
       title: t.footer.categories.patients,
       links:
         language === "en"
-          ? ["Book Appointment", "FAQ"]
-          : ["حجز موعد", "الأسئلة الشائعة"],
+          ? [
+              {
+                label: "Book Appointment",
+                href: getWhatsappLink(language),
+                external: true,
+              },
+              { label: "FAQ", href: "#faq" },
+            ]
+          : [
+              {
+                label: "حجز موعد",
+                href: getWhatsappLink(language),
+                external: true,
+              },
+              { label: "الأسئلة الشائعة", href: "#faq" },
+            ],
     },
-  
   ];
-}
+
   return (
     <footer className="footer">
       <div className="container footer-top">
@@ -1012,11 +1028,12 @@ function Footer({
 
           <p className="footer-copy">{t.footer.copy}</p>
 
-         <div className="footer-contact">
-  <p>+966 55 757 1172</p>
-  <p>Buraydah</p>
-  <p>1:00 PM – 9:00 PM</p>
-</div>
+          <div className="footer-contact">
+            <p>+966 55 757 1172</p>
+            <p>Buraydah</p>
+            <p>1:00 PM – 9:00 PM</p>
+          </div>
+        </div>
 
         <div className="footer-links-grid">
           {footerCategories.map((category) => (
@@ -1024,8 +1041,18 @@ function Footer({
               <h3>{category.title}</h3>
               <ul>
                 {category.links.map((link) => (
-                  <li key={link}>
-                    <a href="#">{link}</a>
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      {...(link.external
+                        ? {
+                            target: "_blank",
+                            rel: "noopener noreferrer",
+                          }
+                        : {})}
+                    >
+                      {link.label}
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -1037,20 +1064,14 @@ function Footer({
       <div className="container footer-bottom">
         <p>{t.footer.rights}</p>
         <div className="footer-bottom-links">
-          <a href="#">{footerLinks.legal[language][0]}</a>
-          <a href="#">
-            {language === "en" ? "Terms of Service" : "شروط الخدمة"}
-          </a>
-          <a href="#">
-            {language === "en"
-              ? "Cookie Settings"
-              : "إعدادات ملفات تعريف الارتباط"}
-          </a>
+          <a href="#home">{language === "en" ? "Home" : "الرئيسية"}</a>
+          <a href="#about">{language === "en" ? "About" : "من نحن"}</a>
+          <a href="#contact">{language === "en" ? "Contact" : "تواصل معنا"}</a>
         </div>
       </div>
     </footer>
   );
-
+}
 
 export default function Page() {
   const [scrolled, setScrolled] = useState(false);
@@ -1677,6 +1698,15 @@ export default function Page() {
           object-fit: contain;
         }
 
+        [dir="rtl"] .logo-carousel-wrap {
+          direction: ltr;
+        }
+
+        [dir="rtl"] .logo-carousel-track {
+          direction: ltr;
+          animation: logo-scroll 28s linear infinite;
+        }
+
         @keyframes logo-scroll {
           from {
             transform: translateX(0);
@@ -1903,25 +1933,6 @@ export default function Page() {
           gap: 12px;
         }
 
-        .testimonial-user img {
-          width: 48px;
-          height: 48px;
-          border-radius: 999px;
-          object-fit: cover;
-          border: 1px solid rgba(111, 150, 160, 0.1);
-        }
-
-        .testimonial-user h4 {
-          margin: 0 0 2px;
-          font-size: 0.96rem;
-        }
-
-        .testimonial-user p {
-          margin: 0;
-          color: var(--text-soft);
-          font-size: 0.84rem;
-        }
-
         .faq-section {
           padding: 88px 0;
           background: white;
@@ -2097,7 +2108,7 @@ export default function Page() {
 
         .contact-meta {
           display: grid;
-          grid-template-columns: repeat(2, minmax(0, 1fr));
+          grid-template-columns: repeat(3, minmax(0, 1fr));
           gap: 14px;
           margin-top: 28px;
           padding-top: 22px;
@@ -2155,7 +2166,7 @@ export default function Page() {
 
         .footer-links-grid {
           display: grid;
-          grid-template-columns: repeat(4, minmax(0, 1fr));
+          grid-template-columns: repeat(2, minmax(0, 1fr));
           gap: 28px;
         }
 
@@ -2228,10 +2239,6 @@ export default function Page() {
           direction: rtl;
         }
 
-        [dir="rtl"] .logo-carousel-track {
-          direction: ltr;
-        }
-
         [dir="rtl"] .panel-top,
         [dir="rtl"] .brand,
         [dir="rtl"] .nav-inner {
@@ -2286,6 +2293,10 @@ export default function Page() {
 
           .floating-badge {
             display: none;
+          }
+
+          .contact-meta {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
           }
         }
 
@@ -2392,12 +2403,13 @@ export default function Page() {
       <Navbar
         scrolled={scrolled}
         t={t}
+        language={language}
         onToggleLanguage={() =>
           setLanguage((prev) => (prev === "en" ? "ar" : "en"))
         }
       />
 
-      <Hero t={t} />
+      <Hero t={t} language={language} />
       <LogoCarousel t={t} />
 
       <SimpleSection id="about" title={t.about.title} text={t.about.text} />
@@ -2414,7 +2426,7 @@ export default function Page() {
 
       <FAQSection t={t} />
 
-      <ContactSection t={t} />
+      <ContactSection t={t} language={language} />
 
       <Footer t={t} language={language} />
     </div>

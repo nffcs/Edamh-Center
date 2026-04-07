@@ -1807,9 +1807,18 @@ export default function Page() {
           border-radius: 16px;
           display: grid;
           place-items: center;
-          font-size: 1.25rem;
+          font-size: 0;
           margin-bottom: 18px;
           background: rgba(255, 255, 255, 0.12);
+          position: relative;
+        }
+
+        .why-card-icon::after {
+          content: "";
+          width: 12px;
+          height: 12px;
+          border-radius: 999px;
+          background: currentColor;
         }
 
         .why-card-light .why-card-icon,

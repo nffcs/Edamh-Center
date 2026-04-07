@@ -189,6 +189,7 @@ const content = {
       secondaryAction: "Call Us",
       phoneLabel: "Phone",
       locationLabel: "Location",
+      locationValue: "Buraydah",
       hoursLabel: "Hours",
     },
     footer: {
@@ -371,6 +372,7 @@ const content = {
       secondaryAction: "اتصل بنا",
       phoneLabel: "الهاتف",
       locationLabel: "الموقع",
+      locationValue: "بريدة",
       hoursLabel: "ساعات العمل",
     },
     footer: {
@@ -952,7 +954,9 @@ function ContactSection({
                   <span className="contact-meta-title">
                     {t.contact.locationLabel}
                   </span>
-                  <span className="contact-meta-value">Buraydah</span>
+                  <span className="contact-meta-value">
+                    {t.contact.locationValue}
+                  </span>
                 </div>
 
                 <div className="contact-meta-item">
@@ -1031,8 +1035,12 @@ function Footer({
           <p className="footer-copy">{t.footer.copy}</p>
 
           <div className="footer-contact">
-            <p>+966 55 757 1172</p>
-            <p></p>
+            <p dir="ltr">+966 55 757 1172</p>
+            <p>
+              {language === "en"
+                ? "Al Salam Rd, Al Nakhil District, Buraydah 52375, Saudi Arabia"
+                : "طريق السلام حي النخيل، بريدة 52375، المملكة العربية السعودية"}
+            </p>
             <p>1:00 PM – 9:00 PM</p>
           </div>
         </div>
@@ -2164,6 +2172,7 @@ export default function Page() {
           margin: 0 0 10px;
           color: var(--text-muted);
           font-size: 0.92rem;
+          line-height: 1.6;
         }
 
         .footer-links-grid {

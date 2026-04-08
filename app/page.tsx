@@ -131,7 +131,7 @@ const content = {
         environment: {
           title: "Calm & Welcoming Space",
           body: "Our center is designed to feel less like a medical facility and more like a place of healing — quiet, clean, and patient-focused.",
-          icon: "✳",
+          icon: "◇",
         },
         science: {
           title: "Evidence-Based Care",
@@ -314,7 +314,7 @@ const content = {
         environment: {
           title: "بيئة هادئة ومرحّبة",
           body: "مركزنا مصمم ليبدو أقل كمنشأة طبية وأكثر كمكان للشفاء — هادئ ونظيف ويركز على المريض.",
-          icon: "✳",
+          icon: "◇",
         },
         science: {
           title: "رعاية قائمة على الأدلة",
@@ -697,7 +697,7 @@ function Hero({
                 <p className="panel-title">{t.hero.panelTitle}</p>
                 <p className="panel-subtitle">{t.hero.panelSubtitle}</p>
               </div>
-              <div className="panel-icon">❤</div>
+              <div className="panel-icon">✦</div>
             </div>
 
             <div className="panel-content">

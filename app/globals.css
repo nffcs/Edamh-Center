@@ -19,11 +19,12 @@ body {
   box-sizing: border-box;
 }
 
-.logo-img {
-  width: 32px;
-  height: 32px;
-  object-fit: contain;
-  display: block;
+.logo-box {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: 0;
+  background: none;
 }
 
 @layer utilities {
@@ -115,7 +116,7 @@ button {
 }
 
 .container {
-  width: min(1120px, calc(100% - 32px));
+  width: min(1320px, calc(100% - 48px));
   margin: 0 auto;
 }
 
@@ -160,17 +161,18 @@ button {
 }
 
 .logo-box {
-  width: 44px;
-  height: 44px;
-  border-radius: 16px;
-  background: white;
-  border: 1px solid var(--border);
-  box-shadow: 0 8px 20px rgba(47, 75, 83, 0.06);
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-  flex-shrink: 0;
-  position: relative;
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+
+  /* remove ugly stuff */
+  background: transparent;
+  border: none;
+  box-shadow: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .brand-title {
@@ -323,8 +325,8 @@ button {
 .hero-grid {
   position: relative;
   display: grid;
-  grid-template-columns: 1.08fr 0.92fr;
-  gap: 56px;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 88px;
   align-items: center;
   min-height: calc(100vh - 120px);
 }
@@ -334,12 +336,13 @@ button {
   align-items: center;
   gap: 10px;
   margin-bottom: 24px;
-  padding: 10px 16px;
+  padding: 8px 14px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.76);
-  border: 1px solid rgba(111, 150, 160, 0.2);
-  box-shadow: 0 8px 24px rgba(47, 75, 83, 0.05);
-  font-size: 0.92rem;
+  background: rgba(111, 150, 160, 0.12);
+  border: none;
+  box-shadow: none;
+  font-size: 0.85rem;
+  font-weight: 500;
 }
 
 .secondary-pill {
@@ -348,16 +351,16 @@ button {
 }
 
 .pill-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
+  width: 6px;
+  height: 6px;
   background: var(--secondary);
+  border-radius: 999px;
 }
 
 .hero-title {
   margin: 0 0 24px;
-  font-size: clamp(2.6rem, 5vw, 4.4rem);
-  line-height: 1.05;
+  font-size: clamp(2.8rem, 5vw, 5.4rem);
+  line-height: 1.02;
   font-weight: 700;
 }
 
@@ -373,10 +376,10 @@ button {
 }
 
 .hero-text {
-  max-width: 720px;
+  max-width: 760px;
   margin: 0 0 32px;
-  font-size: 1.08rem;
-  line-height: 1.8;
+  font-size: 1.16rem;
+  line-height: 1.9;
   color: var(--text-muted);
 }
 
@@ -1357,5 +1360,41 @@ button {
 
   .contact-card-inner {
     padding: 22px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .container {
+    width: min(1440px, calc(100% - 80px));
+  }
+
+  .hero {
+    padding: 72px 0 110px;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 110px;
+  }
+
+  .hero-title {
+    font-size: 5.8rem;
+  }
+
+  .hero-text {
+    font-size: 1.2rem;
+    max-width: 820px;
+  }
+
+  .nav-inner {
+    min-height: 88px;
+  }
+
+  .brand-title {
+    font-size: 1.15rem;
+  }
+
+  .brand-subtitle {
+    font-size: 0.84rem;
   }
 }

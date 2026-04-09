@@ -1415,3 +1415,24 @@ button {
   max-width: 75px;
   max-height: 40px;
 }
+@media (max-width: 640px) {
+  .logo-carousel-img {
+    max-width: 150px;
+    max-height: 80px;
+  }
+
+  .logo-basmat {
+    max-width: 85px;
+    max-height: 45px;
+  }
+
+  .logo-moves {
+    max-width: 85px;
+    max-height: 45px;
+  }
+
+  .logo-btl {
+    max-width: 85px;
+    max-height: 45px;
+  }
+}

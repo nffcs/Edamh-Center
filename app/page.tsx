@@ -447,15 +447,18 @@ function BrandLogo() {
 }
 
 function LogoCarousel({ t }: { t: (typeof content)["en"] }) {
-  const logos = [
-    { src: "/logos/qassim.png", alt: "Qassim Health Cluster" },
-    { src: "/logos/rheumatism.png", alt: "Rheumatism Association" },
-    { src: "/logos/moh.png", alt: "Ministry of Health" },
-    { src: "/logos/alwatad.png", alt: "Alwatad" },
-    { src: "/logos/jordan.png", alt: "Jordan" },
-    { src: "/logos/ziva.png", alt: "Ziva" },
-    { src: "/logos/vision.png", alt: "Vision Fitness" },
-  ];
+ const logos = [
+  { src: "/logos/qassim.png", alt: "Qassim Health Cluster" },
+  { src: "/logos/rheumatism.png", alt: "Rheumatism Association" },
+  { src: "/logos/moh.png", alt: "Ministry of Health" },
+  { src: "/logos/alwatad.png", alt: "Alwatad" },
+  { src: "/logos/jordan.png", alt: "Jordan" },
+  { src: "/logos/ziva.png", alt: "Ziva" },
+  { src: "/logos/vision.png", alt: "Vision Fitness" },
+  { src: "/logos/basmat-tafaul.png", alt: "Basmat Tafaul", className: "logo-basmat" },
+  { src: "/logos/moves.png", alt: "Moves", className: "logo-moves" },
+  { src: "/logos/btl.png", alt: "BTL", className: "logo-btl" },
+];
 
   const repeatedLogos = [...logos, ...logos];
 
@@ -470,10 +473,10 @@ function LogoCarousel({ t }: { t: (typeof content)["en"] }) {
             {repeatedLogos.map((logo, index) => (
               <div key={index} className="logo-carousel-item">
                 <img
-                  src={logo.src}
-                  alt={logo.alt}
-                  className="logo-carousel-img"
-                />
+  src={logo.src}
+  alt={logo.alt}
+  className={`logo-carousel-img ${logo.className ?? ""}`}
+/>
               </div>
             ))}
           </div>

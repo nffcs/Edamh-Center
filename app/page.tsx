@@ -737,7 +737,20 @@ function Hero({
 
             <div className="panel-content">
               <div className="assessment-card">
-                <p className="assessment-label">{t.hero.assessmentLabel}</p>
+                <p
+  className="assessment-label"
+  style={
+    language === "ar"
+      ? {
+          textTransform: "none",
+          letterSpacing: "0",
+          fontSize: "0.85rem",
+        }
+      : undefined
+  }
+>
+  {t.hero.assessmentLabel}
+</p>
                 <h3>{t.hero.assessmentTitle}</h3>
                 <p>{t.hero.assessmentText}</p>
               </div>

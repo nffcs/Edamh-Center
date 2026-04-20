@@ -92,7 +92,21 @@ const content = {
     },
     about: {
       title: "About Edamh Center",
-      text: "We provide patient-centered physiotherapy and rehabilitation care with a focus on restoring mobility, easing pain, and improving quality of life through modern clinical methods.",
+      text: "We provide patient-centered physiotherapy and rehabilitation care focused on restoring movement, easing pain, and helping every patient recover with confidence through modern, evidence-based treatment.",
+      items: [
+        {
+          title: "Patient-Centered Care",
+          text: "Every treatment journey starts with understanding your condition, comfort, and long-term recovery goals.",
+        },
+        {
+          title: "Modern Clinical Approach",
+          text: "Our methods combine hands-on expertise, structured evaluation, and evidence-based physiotherapy practices.",
+        },
+        {
+          title: "Recovery With Confidence",
+          text: "We focus on pain relief, improved movement, and steady progress that supports daily life and lasting wellbeing.",
+        },
+      ],
     },
     services: {
       title: "Our Services",
@@ -275,7 +289,21 @@ const content = {
     },
     about: {
       title: "عن مركز ادمة",
-      text: "نقدم رعاية علاج طبيعي وإعادة تأهيل تركز على المريض بهدف استعادة الحركة وتخفيف الألم وتحسين جودة الحياة من خلال أساليب علاجية حديثة.",
+      text: "نقدم رعاية علاج طبيعي وإعادة تأهيل تركز على المريض، بهدف استعادة الحركة وتخفيف الألم ومساعدة كل مريض على التعافي بثقة من خلال أساليب علاجية حديثة قائمة على الأدلة.",
+      items: [
+        {
+          title: "رعاية تتمحور حول المريض",
+          text: "تبدأ كل رحلة علاجية بفهم حالتك وراحتك وأهدافك للتعافي على المدى الطويل.",
+        },
+        {
+          title: "منهجية علاجية حديثة",
+          text: "نعتمد على التقييم الدقيق والخبرة العملية وأساليب العلاج الطبيعي الحديثة المبنية على أفضل الممارسات.",
+        },
+        {
+          title: "تعافٍ بثقة",
+          text: "نركز على تخفيف الألم وتحسين الحركة وتحقيق تقدم مستمر يدعم حياتك اليومية وعافيتك على المدى البعيد.",
+        },
+      ],
     },
     services: {
       title: "خدماتنا",
@@ -447,18 +475,22 @@ function BrandLogo() {
 }
 
 function LogoCarousel({ t }: { t: (typeof content)["en"] }) {
- const logos = [
-  { src: "/logos/qassim.png", alt: "Qassim Health Cluster" },
-  { src: "/logos/rheumatism.png", alt: "Rheumatism Association" },
-  { src: "/logos/moh.png", alt: "Ministry of Health" },
-  { src: "/logos/alwatad.png", alt: "Alwatad" },
-  { src: "/logos/jordan.png", alt: "Jordan" },
-  { src: "/logos/ziva.png", alt: "Ziva" },
-  { src: "/logos/vision.png", alt: "Vision Fitness" },
-  { src: "/logos/basmat-tafaul.png", alt: "Basmat Tafaul", className: "logo-basmat" },
-  { src: "/logos/moves.png", alt: "Moves", className: "logo-moves" },
-  { src: "/logos/btl.png", alt: "BTL", className: "logo-btl" },
-];
+  const logos = [
+    { src: "/logos/qassim.png", alt: "Qassim Health Cluster" },
+    { src: "/logos/rheumatism.png", alt: "Rheumatism Association" },
+    { src: "/logos/moh.png", alt: "Ministry of Health" },
+    { src: "/logos/alwatad.png", alt: "Alwatad" },
+    { src: "/logos/jordan.png", alt: "Jordan" },
+    { src: "/logos/ziva.png", alt: "Ziva" },
+    { src: "/logos/vision.png", alt: "Vision Fitness" },
+    {
+      src: "/logos/basmat-tafaul.png",
+      alt: "Basmat Tafaul",
+      className: "logo-basmat",
+    },
+    { src: "/logos/moves.png", alt: "Moves", className: "logo-moves" },
+    { src: "/logos/btl.png", alt: "BTL", className: "logo-btl" },
+  ];
 
   const repeatedLogos = [...logos, ...logos];
 
@@ -473,10 +505,10 @@ function LogoCarousel({ t }: { t: (typeof content)["en"] }) {
             {repeatedLogos.map((logo, index) => (
               <div key={index} className="logo-carousel-item">
                 <img
-  src={logo.src}
-  alt={logo.alt}
-  className={`logo-carousel-img ${logo.className ?? ""}`}
-/>
+                  src={logo.src}
+                  alt={logo.alt}
+                  className={`logo-carousel-img ${logo.className ?? ""}`}
+                />
               </div>
             ))}
           </div>
@@ -749,6 +781,135 @@ function SimpleSection({
       <div className="container centered">
         <h2>{title}</h2>
         <p>{text}</p>
+      </div>
+    </section>
+  );
+}
+
+function AboutSection({
+  t,
+  language,
+}: {
+  t: (typeof content)["en"];
+  language: Language;
+}) {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const aboutItems = t.about.items;
+
+  const visualContent = [
+    {
+      eyebrow: language === "en" ? "Care Philosophy" : "فلسفة الرعاية",
+      title:
+        language === "en"
+          ? "Patient-first rehabilitation"
+          : "تأهيل يضع المريض أولاً",
+      text:
+        language === "en"
+          ? "A calm environment, clear communication, and treatment plans built around each individual."
+          : "بيئة هادئة وتواصل واضح وخطط علاجية تُبنى حول احتياج كل مريض.",
+      stat: language === "en" ? "Personalized" : "مخصص",
+    },
+    {
+      eyebrow: language === "en" ? "Clinical Approach" : "المنهجية العلاجية",
+      title:
+        language === "en"
+          ? "Modern, evidence-based treatment"
+          : "علاج حديث قائم على الأدلة",
+      text:
+        language === "en"
+          ? "We combine professional assessment, guided therapy, and modern physiotherapy practices."
+          : "نجمع بين التقييم المهني والعلاج الموجّه وأساليب العلاج الطبيعي الحديثة.",
+      stat: language === "en" ? "Evidence-Based" : "مدعوم بالأدلة",
+    },
+    {
+      eyebrow: language === "en" ? "Recovery Goal" : "هدف التعافي",
+      title:
+        language === "en"
+          ? "Better movement, better daily life"
+          : "حركة أفضل وحياة يومية أفضل",
+      text:
+        language === "en"
+          ? "Our focus is steady progress, pain reduction, and long-term confidence in movement."
+          : "نركز على التقدم المستمر وتخفيف الألم واستعادة الثقة في الحركة على المدى الطويل.",
+      stat: language === "en" ? "Long-Term Recovery" : "تعافٍ طويل المدى",
+    },
+  ];
+
+  const active = visualContent[activeIndex];
+
+  return (
+    <section id="about" className="about-section">
+      <div className="container about-grid">
+        {/* LEFT */}
+        <div className="about-copy">
+          <div className="pill secondary-pill">
+            {language === "en" ? "About Us" : "من نحن"}
+          </div>
+
+          <h2>{t.about.title}</h2>
+          <p className="about-intro">{t.about.text}</p>
+
+          <div className="about-list">
+            {aboutItems.map((item, index) => (
+              <button
+                key={item.title}
+                type="button"
+                onClick={() => setActiveIndex(index)}
+                className={`about-item ${
+                  activeIndex === index ? "about-item-active" : ""
+                }`}
+              >
+                <div className="about-item-number">
+                  {String(index + 1).padStart(2, "0")}
+                </div>
+
+                <div className="about-item-body">
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* RIGHT */}
+        <div className="about-visual-shell">
+          <div className="about-visual-card">
+            <div className="about-orb about-orb-1" />
+            <div className="about-orb about-orb-2" />
+            <div className="about-ring about-ring-1" />
+            <div className="about-ring about-ring-2" />
+
+            <div className="about-visual-top">
+              <span
+                key={activeIndex}
+                className="about-visual-eyebrow"
+              >
+                {active.eyebrow}
+              </span>
+
+              <div key={activeIndex + "-badge"} className="about-visual-badge">
+                {active.stat}
+              </div>
+            </div>
+
+            <div className="about-visual-center">
+              <div className="about-logo-core">
+                <img
+                  src="/edamah_logo_square_exact.png"
+                  alt="Edamh Center Logo"
+                  className="about-logo-img"
+                />
+              </div>
+            </div>
+
+            <div key={activeIndex + "-text"} className="about-visual-bottom">
+              <h3>{active.title}</h3>
+              <p>{active.text}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -1117,8 +1278,7 @@ export default function Page() {
 
       <Hero t={t} language={language} />
       <LogoCarousel t={t} />
-
-      <SimpleSection id="about" title={t.about.title} text={t.about.text} />
+      <AboutSection t={t} language={language} />
 
       <SimpleSection
         id="services"
@@ -1127,13 +1287,9 @@ export default function Page() {
       />
 
       <WhyUs t={t} />
-
       <Testimonials t={t} language={language} />
-
       <FAQSection t={t} />
-
       <ContactSection t={t} language={language} />
-
       <Footer t={t} language={language} />
     </div>
   );

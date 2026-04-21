@@ -683,12 +683,15 @@ function Hero({
             <span className="pill-dot" />
             {t.hero.badge}
           </div>
-
-          <h1 className="hero-title">
-            <span>{t.hero.title1}</span>
-            <span className="gradient-text">{t.hero.title2}</span>
-            <span>{t.hero.title3}</span>
-          </h1>
+<h1
+  className={`hero-title ${
+    language === "en" ? "hero-title-en" : "hero-title-ar"
+  }`}
+>
+  <span>{t.hero.title1}</span>
+  <span className="gradient-text">{t.hero.title2}</span>
+  <span>{t.hero.title3}</span>
+</h1>
 
           <p className="hero-text">{t.hero.text}</p>
 

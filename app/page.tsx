@@ -19,7 +19,7 @@ type Testimonial = {
 
 const content = {
   en: {
-    clinicName: "Edamh Center",
+    clinicName: "Edamah Center",
     clinicSubtitle: "Physical Therapy & Rehabilitation",
     nav: {
       home: "Home",
@@ -91,7 +91,7 @@ const content = {
       text: "Collaborating with leading healthcare and wellness organizations",
     },
     about: {
-      title: "About Edamh Center",
+      title: "About Edamah Center",
       text: "We provide patient-centered physiotherapy and rehabilitation care focused on restoring movement, easing pain, and helping every patient recover with confidence through modern, evidence-based treatment.",
       items: [
         {
@@ -208,7 +208,7 @@ const content = {
     },
     footer: {
       copy: "Personalized physiotherapy and rehabilitation care focused on pain relief, mobility, recovery, and long-term wellness in a trusted clinical environment.",
-      rights: "© 2026 Edamh Center. All rights reserved.",
+      rights: "© 2026 Edamah Center. All rights reserved.",
       categories: {
         clinic: "Center",
         patients: "Patients",
@@ -467,7 +467,7 @@ function BrandLogo() {
     <div className="logo-box">
       <img
         src="/edamah_logo_square_exact.png"
-        alt="Edamh Center Logo"
+        alt="Edamah Center Logo"
         className="logo-img"
       />
     </div>
@@ -914,7 +914,7 @@ function AboutSection({
               <div className="about-logo-core">
                 <img
                   src="/edamah_logo_square_exact.png"
-                  alt="Edamh Center Logo"
+                  alt="Edamah Center Logo"
                   className="about-logo-img"
                 />
               </div>
